@@ -1,0 +1,454 @@
+{
+  "case": {
+    "num_qubits": 10,
+    "family": "diagonal",
+    "threads": 4,
+    "precision": "f32",
+    "fusion": true,
+    "optimize_cx": false,
+    "id": "10q-diagonal-f32-4t-fusion-1",
+    "status": "running",
+    "reason": null,
+    "memory_admission": {
+      "state_bytes": 16384,
+      "estimated_working_bytes": 131072,
+      "snapshot": {
+        "physical_bytes": 17179869184,
+        "available_bytes": 3484172288,
+        "method": "macOS free+inactive+speculative+purgeable pages (estimate)",
+        "Swapins": 2002,
+        "Swapouts": 4588
+      }
+    },
+    "request_sha256": "f2eded1bfa4a0084bffb2678f529d23c651288ced358ec4bc31fe1f67a2fbac0",
+    "gate_count": 74,
+    "circuit_sha256": "39d6ae9a4a1f9975891b6fd3203d773a89d1f717e1f88708f4e30056f826e66c",
+    "request_path": "cases/10q-diagonal-f32-4t-fusion-1.request.json"
+  },
+  "config": {
+    "qubits": [
+      10
+    ],
+    "threads": [
+      4
+    ],
+    "precisions": [
+      "f32",
+      "f16"
+    ],
+    "families": [
+      "cx_stride",
+      "diagonal"
+    ],
+    "engines": [
+      "aer"
+    ],
+    "fusion": "both",
+    "optimize_cx": false,
+    "target": "high",
+    "layers": 8,
+    "depth": 64,
+    "seed": 42,
+    "repetitions": 2,
+    "warmup": 0,
+    "full_check_max_qubits": 0,
+    "max_state_mib": 256,
+    "reserve_mib": 1024,
+    "timeout": 600,
+    "dry_run": false
+  },
+  "request": {
+    "num_qubits": 10,
+    "gates": [
+      {
+        "gate": "h",
+        "target": 0
+      },
+      {
+        "gate": "h",
+        "target": 1
+      },
+      {
+        "gate": "h",
+        "target": 2
+      },
+      {
+        "gate": "h",
+        "target": 3
+      },
+      {
+        "gate": "h",
+        "target": 4
+      },
+      {
+        "gate": "h",
+        "target": 5
+      },
+      {
+        "gate": "h",
+        "target": 6
+      },
+      {
+        "gate": "h",
+        "target": 7
+      },
+      {
+        "gate": "h",
+        "target": 8
+      },
+      {
+        "gate": "h",
+        "target": 9
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.174
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.242
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.31
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.378
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.446
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.514
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.5820000000000001
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.65
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.7180000000000001
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.786
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.8540000000000001
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.922
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.9900000000000001
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 1.058
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 1.1260000000000001
+      },
+      {
+        "gate": "z",
+        "target": 9
+      },
+      {
+        "gate": "s",
+        "target": 9
+      },
+      {
+        "gate": "t",
+        "target": 9
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 1.1940000000000002
+      }
+    ],
+    "threads": 4,
+    "precision": "f32",
+    "fusion": true,
+    "optimize": false,
+    "memory_limit_bytes": 268435456,
+    "include_state": false,
+    "include_norm": false,
+    "probe_indices": [
+      0,
+      1,
+      13,
+      51,
+      54,
+      61,
+      65,
+      88,
+      93,
+      114,
+      142,
+      146,
+      161,
+      163,
+      178,
+      189,
+      191,
+      198,
+      206,
+      209,
+      228,
+      255,
+      285,
+      318,
+      326,
+      333,
+      334,
+      350,
+      393,
+      407,
+      429,
+      440,
+      447,
+      449,
+      451,
+      457,
+      466,
+      469,
+      476,
+      501,
+      541,
+      546,
+      552,
+      563,
+      569,
+      592,
+      600,
+      664,
+      689,
+      696,
+      704,
+      727,
+      735,
+      740,
+      747,
+      758,
+      775,
+      777,
+      778,
+      859,
+      864,
+      865,
+      919,
+      928,
+      940,
+      946,
+      1023
+    ]
+  },
+  "binary": "/Users/computer/Documents/qiskit_rust/target/release/statevector"
+}

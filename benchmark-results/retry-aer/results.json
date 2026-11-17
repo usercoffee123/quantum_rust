@@ -1,0 +1,445 @@
+{
+  "complete": true,
+  "metadata": {
+    "date": "2026-11-17",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "threads": 4,
+    "layers": 8,
+    "repetitions": 5,
+    "warmup": 1,
+    "qiskit": "2.2.3",
+    "aer": "0.17.2",
+    "numpy": "2.0.2",
+    "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+    "source_sha256": "0ebc5e4ee1876badad43f7d637d28b22aede0099ba6d5408d7e06fb829d1a695",
+    "binary_sha256": "83774ec4daad72269d811ccf25c16604b8125a4449c81f2f99b438d813e1a0e3",
+    "baseline_sha256": "5040187ce37adac4832b254f2f512bb96bd5709f891895c5641451beab0c7618",
+    "timing_scope": "Fresh FP64 state, execution and equivalent amplitude probes. Rust parsing/pool/compilation and Aer job/fusion included. Imports, circuit construction, native process startup, full validation excluded. Engine order rotates; BLAS limits one; OpenMP/state workers matched."
+  },
+  "results": [
+    {
+      "num_qubits": 20,
+      "family": "scrambled_bell",
+      "gates": 420,
+      "full_state_max_errors": {
+        "rust": 6.51965303722015e-18,
+        "old_rust": 6.51965303722015e-18
+      },
+      "timings": {
+        "rust": {
+          "median_seconds": 0.043081499999999995,
+          "min_seconds": 0.03808887499999991,
+          "max_seconds": 0.04394070799999983,
+          "samples_seconds": [
+            0.04370541700000019,
+            0.038121542000000064,
+            0.04394070799999983,
+            0.043081499999999995,
+            0.03808887499999991
+          ]
+        },
+        "aer": {
+          "median_seconds": 0.07111679100000012,
+          "min_seconds": 0.07076883399999989,
+          "max_seconds": 0.0714094999999999,
+          "samples_seconds": [
+            0.07079204199999989,
+            0.07076883399999989,
+            0.07125716699999995,
+            0.0714094999999999,
+            0.07111679100000012
+          ]
+        },
+        "old_rust": {
+          "median_seconds": 0.07626208300000004,
+          "min_seconds": 0.07602166700000001,
+          "max_seconds": 0.07935287499999988,
+          "samples_seconds": [
+            0.07935287499999988,
+            0.076982208,
+            0.0762162500000001,
+            0.07626208300000004,
+            0.07602166700000001
+          ]
+        }
+      },
+      "aer_metadata": {
+        "num_bind_params": 1,
+        "runtime_parameter_bind": false,
+        "parallel_state_update": 4,
+        "parallel_shots": 1,
+        "noise": "ideal",
+        "batched_shots_optimization": false,
+        "remapped_qubits": false,
+        "active_input_qubits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "device": "CPU",
+        "time_taken": 0.067031958,
+        "measure_sampling": true,
+        "num_clbits": 0,
+        "max_memory_mb": 16384,
+        "input_qubit_map": [],
+        "num_qubits": 20,
+        "method": "statevector",
+        "required_memory_mb": 16,
+        "result_subtypes": {
+          "amplitudes": "single"
+        },
+        "result_types": {
+          "amplitudes": "save_amplitudes"
+        },
+        "fusion": {
+          "enabled": true,
+          "threshold": 14,
+          "time_taken": 0.001237917,
+          "parallelization": 1,
+          "applied": true,
+          "max_fused_qubits": 5,
+          "cost_factor": 1.8,
+          "method": "unitary"
+        }
+      },
+      "aer_over_rust_ratio": 1.650750113157623,
+      "old_over_new_ratio": 1.770181702122722
+    },
+    {
+      "num_qubits": 20,
+      "family": "random_matching",
+      "gates": 420,
+      "full_state_max_errors": {
+        "rust": 7.152448122690996e-18,
+        "old_rust": 7.152448122690996e-18
+      },
+      "timings": {
+        "rust": {
+          "median_seconds": 0.0415719160000001,
+          "min_seconds": 0.03826995799999988,
+          "max_seconds": 0.04404325000000009,
+          "samples_seconds": [
+            0.0415719160000001,
+            0.03826995799999988,
+            0.04404325000000009,
+            0.04205695799999987,
+            0.03866912500000019
+          ]
+        },
+        "aer": {
+          "median_seconds": 0.07437270800000029,
+          "min_seconds": 0.07396391699999993,
+          "max_seconds": 0.07458100000000023,
+          "samples_seconds": [
+            0.07396391699999993,
+            0.07413112500000008,
+            0.07437270800000029,
+            0.07449837499999967,
+            0.07458100000000023
+          ]
+        },
+        "old_rust": {
+          "median_seconds": 0.07748595899999966,
+          "min_seconds": 0.07318620900000017,
+          "max_seconds": 0.07880525000000027,
+          "samples_seconds": [
+            0.07631787499999998,
+            0.07748595899999966,
+            0.07880525000000027,
+            0.07816175000000003,
+            0.07318620900000017
+          ]
+        }
+      },
+      "aer_metadata": {
+        "num_bind_params": 1,
+        "runtime_parameter_bind": false,
+        "parallel_state_update": 4,
+        "parallel_shots": 1,
+        "noise": "ideal",
+        "batched_shots_optimization": false,
+        "remapped_qubits": false,
+        "active_input_qubits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "device": "CPU",
+        "time_taken": 0.07045,
+        "measure_sampling": true,
+        "num_clbits": 0,
+        "max_memory_mb": 16384,
+        "input_qubit_map": [],
+        "num_qubits": 20,
+        "method": "statevector",
+        "required_memory_mb": 16,
+        "result_subtypes": {
+          "amplitudes": "single"
+        },
+        "result_types": {
+          "amplitudes": "save_amplitudes"
+        },
+        "fusion": {
+          "enabled": true,
+          "threshold": 14,
+          "time_taken": 0.0012445,
+          "parallelization": 1,
+          "applied": true,
+          "max_fused_qubits": 5,
+          "cost_factor": 1.8,
+          "method": "unitary"
+        }
+      },
+      "aer_over_rust_ratio": 1.7890132367245262,
+      "old_over_new_ratio": 1.8639015579652254
+    },
+    {
+      "num_qubits": 22,
+      "family": "scrambled_bell",
+      "gates": 454,
+      "full_state_max_errors": {
+        "rust": 4.104245856096266e-18,
+        "old_rust": 4.104245856096266e-18
+      },
+      "timings": {
+        "rust": {
+          "median_seconds": 0.22546566699999993,
+          "min_seconds": 0.21879741600000013,
+          "max_seconds": 0.23127616700000075,
+          "samples_seconds": [
+            0.21879741600000013,
+            0.2225447909999998,
+            0.23127616700000075,
+            0.22659745899999884,
+            0.22546566699999993
+          ]
+        },
+        "aer": {
+          "median_seconds": 0.304238625,
+          "min_seconds": 0.2978741249999999,
+          "max_seconds": 0.30973950000000094,
+          "samples_seconds": [
+            0.2978741249999999,
+            0.30005225000000024,
+            0.304238625,
+            0.30973950000000094,
+            0.30763958300000027
+          ]
+        },
+        "old_rust": {
+          "median_seconds": 0.34794933299999986,
+          "min_seconds": 0.3322073329999995,
+          "max_seconds": 0.3550671249999997,
+          "samples_seconds": [
+            0.34794933299999986,
+            0.3322073329999995,
+            0.35327991700000005,
+            0.3550671249999997,
+            0.34344870900000046
+          ]
+        }
+      },
+      "aer_metadata": {
+        "num_bind_params": 1,
+        "runtime_parameter_bind": false,
+        "parallel_state_update": 4,
+        "parallel_shots": 1,
+        "noise": "ideal",
+        "batched_shots_optimization": false,
+        "remapped_qubits": false,
+        "active_input_qubits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "device": "CPU",
+        "time_taken": 0.30293125,
+        "measure_sampling": true,
+        "num_clbits": 0,
+        "max_memory_mb": 16384,
+        "input_qubit_map": [],
+        "num_qubits": 22,
+        "method": "statevector",
+        "required_memory_mb": 64,
+        "result_subtypes": {
+          "amplitudes": "single"
+        },
+        "result_types": {
+          "amplitudes": "save_amplitudes"
+        },
+        "fusion": {
+          "enabled": true,
+          "threshold": 14,
+          "time_taken": 0.001381042,
+          "parallelization": 1,
+          "applied": true,
+          "max_fused_qubits": 5,
+          "cost_factor": 1.8,
+          "method": "unitary"
+        }
+      },
+      "aer_over_rust_ratio": 1.3493789500110458,
+      "old_over_new_ratio": 1.5432475269061696
+    },
+    {
+      "num_qubits": 22,
+      "family": "random_matching",
+      "gates": 462,
+      "full_state_max_errors": {
+        "rust": 4.574253976840017e-18,
+        "old_rust": 4.574253976840017e-18
+      },
+      "timings": {
+        "rust": {
+          "median_seconds": 0.251865875,
+          "min_seconds": 0.2334984999999996,
+          "max_seconds": 0.2560372500000003,
+          "samples_seconds": [
+            0.2560372500000003,
+            0.251865875,
+            0.2521714999999993,
+            0.23684479199999942,
+            0.2334984999999996
+          ]
+        },
+        "aer": {
+          "median_seconds": 0.350928166000001,
+          "min_seconds": 0.3484054580000002,
+          "max_seconds": 0.36796570799999984,
+          "samples_seconds": [
+            0.3484054580000002,
+            0.350928166000001,
+            0.36796570799999984,
+            0.3520658749999992,
+            0.35019670899999866
+          ]
+        },
+        "old_rust": {
+          "median_seconds": 0.3724645839999994,
+          "min_seconds": 0.3591256670000007,
+          "max_seconds": 0.37641087500000125,
+          "samples_seconds": [
+            0.37641087500000125,
+            0.36704483399999965,
+            0.3724645839999994,
+            0.37559520799999824,
+            0.3591256670000007
+          ]
+        }
+      },
+      "aer_metadata": {
+        "num_bind_params": 1,
+        "runtime_parameter_bind": false,
+        "parallel_state_update": 4,
+        "parallel_shots": 1,
+        "noise": "ideal",
+        "batched_shots_optimization": false,
+        "remapped_qubits": false,
+        "active_input_qubits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "device": "CPU",
+        "time_taken": 0.345458583,
+        "measure_sampling": true,
+        "num_clbits": 0,
+        "max_memory_mb": 16384,
+        "input_qubit_map": [],
+        "num_qubits": 22,
+        "method": "statevector",
+        "required_memory_mb": 64,
+        "result_subtypes": {
+          "amplitudes": "single"
+        },
+        "result_types": {
+          "amplitudes": "save_amplitudes"
+        },
+        "fusion": {
+          "enabled": true,
+          "threshold": 14,
+          "time_taken": 0.001515916,
+          "parallelization": 1,
+          "applied": true,
+          "max_fused_qubits": 5,
+          "cost_factor": 1.8,
+          "method": "unitary"
+        }
+      },
+      "aer_over_rust_ratio": 1.3933136674430426,
+      "old_over_new_ratio": 1.4788211543147691
+    }
+  ]
+}

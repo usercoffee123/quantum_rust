@@ -1,0 +1,1016 @@
+{
+  "complete": true,
+  "metadata": {
+    "reference": "installed Qiskit quantum_info.Statevector wheel, not Aer or the historical submodule",
+    "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+    "qiskit": "2.2.3",
+    "numpy": "2.0.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "logical_cpus": 10,
+    "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+    "date": "2026-11-17",
+    "repetitions": 5,
+    "warmup": 1,
+    "source_sha256": "7b1f3f79aa3bcb2f8a53cb241a90ea1a04277aec0846cdb62930a7f86bb928a5",
+    "binary_sha256": "5040187ce37adac4832b254f2f512bb96bd5709f891895c5641451beab0c7618",
+    "numerical_thread_limits": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "timing_scope": "Rust gate timer excludes allocation, compilation, pool creation, JSON and probes; Python evolve timer excludes initial state/circuit creation but includes output/scratch allocation. Rust fresh-request timings are separately recorded. Python baselines measured first and reused; engine order not randomized. FP64 throughout benchmarks."
+  },
+  "parity": [
+    {
+      "precision": "f64",
+      "threads": 1,
+      "fusion": false,
+      "optimize": false,
+      "circuits": 240,
+      "max_amplitude_error": 9.24156474531335e-15,
+      "max_norm_drift": 6.8833827526759706e-15
+    },
+    {
+      "precision": "f64",
+      "threads": 1,
+      "fusion": true,
+      "optimize": true,
+      "circuits": 240,
+      "max_amplitude_error": 9.17261935994722e-15,
+      "max_norm_drift": 6.661338147750939e-15
+    },
+    {
+      "precision": "f64",
+      "threads": 4,
+      "fusion": false,
+      "optimize": false,
+      "circuits": 240,
+      "max_amplitude_error": 9.24156474531335e-15,
+      "max_norm_drift": 6.8833827526759706e-15
+    },
+    {
+      "precision": "f64",
+      "threads": 4,
+      "fusion": true,
+      "optimize": true,
+      "circuits": 240,
+      "max_amplitude_error": 9.17261935994722e-15,
+      "max_norm_drift": 6.661338147750939e-15
+    },
+    {
+      "precision": "f32",
+      "threads": 1,
+      "fusion": false,
+      "optimize": false,
+      "circuits": 240,
+      "max_amplitude_error": 2.2103582748763785e-06,
+      "max_norm_drift": 4.41749565938121e-06
+    },
+    {
+      "precision": "f32",
+      "threads": 1,
+      "fusion": true,
+      "optimize": true,
+      "circuits": 240,
+      "max_amplitude_error": 1.7456439254388305e-06,
+      "max_norm_drift": 3.4902668604175346e-06
+    },
+    {
+      "precision": "f32",
+      "threads": 4,
+      "fusion": false,
+      "optimize": false,
+      "circuits": 240,
+      "max_amplitude_error": 2.2103582748763785e-06,
+      "max_norm_drift": 4.41749565938121e-06
+    },
+    {
+      "precision": "f32",
+      "threads": 4,
+      "fusion": true,
+      "optimize": true,
+      "circuits": 240,
+      "max_amplitude_error": 1.7456439254388305e-06,
+      "max_norm_drift": 3.4902668604175346e-06
+    },
+    {
+      "precision": "f16",
+      "threads": 1,
+      "fusion": false,
+      "optimize": false,
+      "circuits": 240,
+      "max_amplitude_error": 0.0017378857016138902,
+      "max_norm_drift": 0.004028096795082092
+    },
+    {
+      "precision": "f16",
+      "threads": 1,
+      "fusion": true,
+      "optimize": true,
+      "circuits": 240,
+      "max_amplitude_error": 0.000884306511445798,
+      "max_norm_drift": 0.0027120923560346455
+    },
+    {
+      "precision": "f16",
+      "threads": 4,
+      "fusion": false,
+      "optimize": false,
+      "circuits": 240,
+      "max_amplitude_error": 0.0017378857016138902,
+      "max_norm_drift": 0.004028096795082092
+    },
+    {
+      "precision": "f16",
+      "threads": 4,
+      "fusion": true,
+      "optimize": true,
+      "circuits": 240,
+      "max_amplitude_error": 0.000884306511445798,
+      "max_norm_drift": 0.0027120923560346455
+    }
+  ],
+  "benchmarks": [
+    {
+      "num_qubits": 16,
+      "family": "mixed",
+      "gates": 80,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 0.007126208999999939,
+        "min_seconds": 0.007109791999999615,
+        "max_seconds": 0.007187500000000124,
+        "samples_seconds": [
+          0.007109791999999615,
+          0.007187500000000124,
+          0.007125499999999896,
+          0.007126208999999939,
+          0.007151166999999958
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.003344542,
+        "min_seconds": 0.00329975,
+        "max_seconds": 0.003348709,
+        "samples_seconds": [
+          0.00329975,
+          0.003345083,
+          0.003344542,
+          0.003341083,
+          0.003348709
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.0033839159999997648,
+        "min_seconds": 0.003353917000000095,
+        "max_seconds": 0.0033898750000003197,
+        "samples_seconds": [
+          0.003353917000000095,
+          0.0033898750000003197,
+          0.0033839159999997648,
+          0.0033775000000000333,
+          0.003384209000000027
+        ]
+      },
+      "qiskit_over_rust": 2.1306980148552297,
+      "max_full_state_error": 1.0477996817231665e-17,
+      "compilation": null,
+      "circuit_sha256": "bb57426ab54c4e26cff3a204ff84a28fe67870f41dfa3f119606b9daf3c2a712"
+    },
+    {
+      "num_qubits": 16,
+      "family": "mixed",
+      "gates": 80,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 0.007126208999999939,
+        "min_seconds": 0.007109791999999615,
+        "max_seconds": 0.007187500000000124,
+        "samples_seconds": [
+          0.007109791999999615,
+          0.007187500000000124,
+          0.007125499999999896,
+          0.007126208999999939,
+          0.007151166999999958
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.001242542,
+        "min_seconds": 0.001238083,
+        "max_seconds": 0.001254916,
+        "samples_seconds": [
+          0.001245375,
+          0.001254916,
+          0.001239375,
+          0.001238083,
+          0.001242542
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.0012901249999996978,
+        "min_seconds": 0.001282584000000142,
+        "max_seconds": 0.0013059579999996629,
+        "samples_seconds": [
+          0.0012974169999999674,
+          0.0013059579999996629,
+          0.0012901249999996978,
+          0.0012865409999998079,
+          0.001282584000000142
+        ]
+      },
+      "qiskit_over_rust": 5.735185611432,
+      "max_full_state_error": 1.0566750377506144e-17,
+      "compilation": {
+        "seconds": 7.959e-06,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 8,
+          "execution_operations": 17,
+          "fused_blocks": 3,
+          "fused_source_gates": 66,
+          "input_gates": 80,
+          "output_gates": 80,
+          "structured_fused_blocks": 0
+        }
+      },
+      "circuit_sha256": "bb57426ab54c4e26cff3a204ff84a28fe67870f41dfa3f119606b9daf3c2a712"
+    },
+    {
+      "num_qubits": 16,
+      "family": "mixed",
+      "gates": 80,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 0.007126208999999939,
+        "min_seconds": 0.007109791999999615,
+        "max_seconds": 0.007187500000000124,
+        "samples_seconds": [
+          0.007109791999999615,
+          0.007187500000000124,
+          0.007125499999999896,
+          0.007126208999999939,
+          0.007151166999999958
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.001606166,
+        "min_seconds": 0.001584625,
+        "max_seconds": 0.001650583,
+        "samples_seconds": [
+          0.001606166,
+          0.001598166,
+          0.001584625,
+          0.001637583,
+          0.001650583
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.0016625000000001222,
+        "min_seconds": 0.0016411669999998324,
+        "max_seconds": 0.0017071250000002536,
+        "samples_seconds": [
+          0.0016625000000001222,
+          0.0016594159999998581,
+          0.0016411669999998324,
+          0.0016973329999996345,
+          0.0017071250000002536
+        ]
+      },
+      "qiskit_over_rust": 4.436782374922604,
+      "max_full_state_error": 1.0477996817231665e-17,
+      "compilation": null,
+      "circuit_sha256": "bb57426ab54c4e26cff3a204ff84a28fe67870f41dfa3f119606b9daf3c2a712"
+    },
+    {
+      "num_qubits": 16,
+      "family": "mixed",
+      "gates": 80,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 0.007126208999999939,
+        "min_seconds": 0.007109791999999615,
+        "max_seconds": 0.007187500000000124,
+        "samples_seconds": [
+          0.007109791999999615,
+          0.007187500000000124,
+          0.007125499999999896,
+          0.007126208999999939,
+          0.007151166999999958
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.000586208,
+        "min_seconds": 0.000440333,
+        "max_seconds": 0.000613208,
+        "samples_seconds": [
+          0.000613208,
+          0.000605792,
+          0.000456166,
+          0.000586208,
+          0.000440333
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.0006492910000002183,
+        "min_seconds": 0.0005021670000000533,
+        "max_seconds": 0.0006797079999998346,
+        "samples_seconds": [
+          0.0006797079999998346,
+          0.0006710000000000882,
+          0.0005212500000002507,
+          0.0006492910000002183,
+          0.0005021670000000533
+        ]
+      },
+      "qiskit_over_rust": 12.156451293738638,
+      "max_full_state_error": 1.0566750377506144e-17,
+      "compilation": {
+        "seconds": 8.084e-06,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 8,
+          "execution_operations": 17,
+          "fused_blocks": 3,
+          "fused_source_gates": 66,
+          "input_gates": 80,
+          "output_gates": 80,
+          "structured_fused_blocks": 0
+        }
+      },
+      "circuit_sha256": "bb57426ab54c4e26cff3a204ff84a28fe67870f41dfa3f119606b9daf3c2a712"
+    },
+    {
+      "num_qubits": 16,
+      "family": "scrambled_bell",
+      "gates": 176,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 0.021363334000000123,
+        "min_seconds": 0.021236040999999872,
+        "max_seconds": 0.0214074580000001,
+        "samples_seconds": [
+          0.0214074580000001,
+          0.021236040999999872,
+          0.021315167000000024,
+          0.021392540999999987,
+          0.021363334000000123
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.006332542,
+        "min_seconds": 0.006330125,
+        "max_seconds": 0.0063345,
+        "samples_seconds": [
+          0.006332542,
+          0.006333542,
+          0.006331417,
+          0.006330125,
+          0.0063345
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.006383875000000039,
+        "min_seconds": 0.006380207999999943,
+        "max_seconds": 0.0063865839999999174,
+        "samples_seconds": [
+          0.0063865839999999174,
+          0.0063864169999998666,
+          0.0063817909999999145,
+          0.006380207999999943,
+          0.006383875000000039
+        ]
+      },
+      "qiskit_over_rust": 3.373579519883188,
+      "max_full_state_error": 2.5509874021939393e-17,
+      "compilation": null,
+      "circuit_sha256": "cf20921cd6a31672c8d1096653ea25a5413126b801c6ad24d04d9bd2644af9fe"
+    },
+    {
+      "num_qubits": 16,
+      "family": "scrambled_bell",
+      "gates": 176,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 0.021363334000000123,
+        "min_seconds": 0.021236040999999872,
+        "max_seconds": 0.0214074580000001,
+        "samples_seconds": [
+          0.0214074580000001,
+          0.021236040999999872,
+          0.021315167000000024,
+          0.021392540999999987,
+          0.021363334000000123
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.005934333,
+        "min_seconds": 0.005904375,
+        "max_seconds": 0.005981625,
+        "samples_seconds": [
+          0.005962333,
+          0.005981625,
+          0.005932167,
+          0.005904375,
+          0.005934333
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.006014415999999745,
+        "min_seconds": 0.0059819580000000094,
+        "max_seconds": 0.006076707999999709,
+        "samples_seconds": [
+          0.0060585840000002555,
+          0.006076707999999709,
+          0.006011125000000117,
+          0.0059819580000000094,
+          0.006014415999999745
+        ]
+      },
+      "qiskit_over_rust": 3.599955378304541,
+      "max_full_state_error": 2.126363438126899e-17,
+      "compilation": {
+        "seconds": 2.0958e-05,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 12,
+          "execution_operations": 80,
+          "fused_blocks": 32,
+          "fused_source_gates": 128,
+          "input_gates": 176,
+          "output_gates": 176,
+          "structured_fused_blocks": 32
+        }
+      },
+      "circuit_sha256": "cf20921cd6a31672c8d1096653ea25a5413126b801c6ad24d04d9bd2644af9fe"
+    },
+    {
+      "num_qubits": 16,
+      "family": "scrambled_bell",
+      "gates": 176,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 0.021363334000000123,
+        "min_seconds": 0.021236040999999872,
+        "max_seconds": 0.0214074580000001,
+        "samples_seconds": [
+          0.0214074580000001,
+          0.021236040999999872,
+          0.021315167000000024,
+          0.021392540999999987,
+          0.021363334000000123
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.003218791,
+        "min_seconds": 0.003014542,
+        "max_seconds": 0.00335125,
+        "samples_seconds": [
+          0.003155292,
+          0.00335125,
+          0.003348833,
+          0.003014542,
+          0.003218791
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.0033055829999999453,
+        "min_seconds": 0.003098415999999826,
+        "max_seconds": 0.0034388339999997797,
+        "samples_seconds": [
+          0.0032308340000000157,
+          0.003425832999999656,
+          0.0034388339999997797,
+          0.003098415999999826,
+          0.0033055829999999453
+        ]
+      },
+      "qiskit_over_rust": 6.637067768612539,
+      "max_full_state_error": 2.5509874021939393e-17,
+      "compilation": null,
+      "circuit_sha256": "cf20921cd6a31672c8d1096653ea25a5413126b801c6ad24d04d9bd2644af9fe"
+    },
+    {
+      "num_qubits": 16,
+      "family": "scrambled_bell",
+      "gates": 176,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 0.021363334000000123,
+        "min_seconds": 0.021236040999999872,
+        "max_seconds": 0.0214074580000001,
+        "samples_seconds": [
+          0.0214074580000001,
+          0.021236040999999872,
+          0.021315167000000024,
+          0.021392540999999987,
+          0.021363334000000123
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.001834375,
+        "min_seconds": 0.001822292,
+        "max_seconds": 0.00192225,
+        "samples_seconds": [
+          0.00192225,
+          0.001822292,
+          0.001832916,
+          0.001834375,
+          0.001836792
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.0019337919999999897,
+        "min_seconds": 0.001924459000000045,
+        "max_seconds": 0.0020231250000000145,
+        "samples_seconds": [
+          0.0020231250000000145,
+          0.0019283749999998712,
+          0.001924459000000045,
+          0.0019352079999999106,
+          0.0019337919999999897
+        ]
+      },
+      "qiskit_over_rust": 11.646110528109096,
+      "max_full_state_error": 2.126363438126899e-17,
+      "compilation": {
+        "seconds": 2.2416e-05,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 12,
+          "execution_operations": 80,
+          "fused_blocks": 32,
+          "fused_source_gates": 128,
+          "input_gates": 176,
+          "output_gates": 176,
+          "structured_fused_blocks": 32
+        }
+      },
+      "circuit_sha256": "cf20921cd6a31672c8d1096653ea25a5413126b801c6ad24d04d9bd2644af9fe"
+    },
+    {
+      "num_qubits": 20,
+      "family": "mixed",
+      "gates": 84,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 1.611239416,
+        "min_seconds": 1.6070132079999997,
+        "max_seconds": 1.6195134580000001,
+        "samples_seconds": [
+          1.6185448750000004,
+          1.6103701249999993,
+          1.6195134580000001,
+          1.6070132079999997,
+          1.611239416
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.055273333,
+        "min_seconds": 0.054332542,
+        "max_seconds": 0.055693125,
+        "samples_seconds": [
+          0.055136125,
+          0.055273333,
+          0.054332542,
+          0.0555485,
+          0.055693125
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.05538295799999915,
+        "min_seconds": 0.054450625000001196,
+        "max_seconds": 0.05581208300000107,
+        "samples_seconds": [
+          0.055254500000000206,
+          0.05538295799999915,
+          0.054450625000001196,
+          0.05566833299999985,
+          0.05581208300000107
+        ]
+      },
+      "qiskit_over_rust": 29.150393662708925,
+      "max_full_state_error": 3.0441157420189065e-18,
+      "compilation": null,
+      "circuit_sha256": "101ea7ed5964673dc67c9c73078dc875970680839edd245fad16040fb2e78855"
+    },
+    {
+      "num_qubits": 20,
+      "family": "mixed",
+      "gates": 84,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 1.611239416,
+        "min_seconds": 1.6070132079999997,
+        "max_seconds": 1.6195134580000001,
+        "samples_seconds": [
+          1.6185448750000004,
+          1.6103701249999993,
+          1.6195134580000001,
+          1.6070132079999997,
+          1.611239416
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.023070584,
+        "min_seconds": 0.0230285,
+        "max_seconds": 0.023155791,
+        "samples_seconds": [
+          0.023081375,
+          0.023070584,
+          0.0230285,
+          0.023048041,
+          0.023155791
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.02319904099999981,
+        "min_seconds": 0.02314945900000076,
+        "max_seconds": 0.023271833999999103,
+        "samples_seconds": [
+          0.02321795800000004,
+          0.02319904099999981,
+          0.02314945900000076,
+          0.023167083999998894,
+          0.023271833999999103
+        ]
+      },
+      "qiskit_over_rust": 69.83955915463605,
+      "max_full_state_error": 3.0593910780451824e-18,
+      "compilation": {
+        "seconds": 1.0083e-05,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 8,
+          "execution_operations": 21,
+          "fused_blocks": 3,
+          "fused_source_gates": 66,
+          "input_gates": 84,
+          "output_gates": 84,
+          "structured_fused_blocks": 0
+        }
+      },
+      "circuit_sha256": "101ea7ed5964673dc67c9c73078dc875970680839edd245fad16040fb2e78855"
+    },
+    {
+      "num_qubits": 20,
+      "family": "mixed",
+      "gates": 84,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 1.611239416,
+        "min_seconds": 1.6070132079999997,
+        "max_seconds": 1.6195134580000001,
+        "samples_seconds": [
+          1.6185448750000004,
+          1.6103701249999993,
+          1.6195134580000001,
+          1.6070132079999997,
+          1.611239416
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.017309458,
+        "min_seconds": 0.017192583,
+        "max_seconds": 0.0178655,
+        "samples_seconds": [
+          0.0178655,
+          0.017309458,
+          0.017227958,
+          0.017192583,
+          0.017502416
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.01747800000000055,
+        "min_seconds": 0.017380417000000037,
+        "max_seconds": 0.01806516700000138,
+        "samples_seconds": [
+          0.01806516700000138,
+          0.01747800000000055,
+          0.017399791000000775,
+          0.017380417000000037,
+          0.01767691599999921
+        ]
+      },
+      "qiskit_over_rust": 93.08433666727174,
+      "max_full_state_error": 3.0441157420189065e-18,
+      "compilation": null,
+      "circuit_sha256": "101ea7ed5964673dc67c9c73078dc875970680839edd245fad16040fb2e78855"
+    },
+    {
+      "num_qubits": 20,
+      "family": "mixed",
+      "gates": 84,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 1.611239416,
+        "min_seconds": 1.6070132079999997,
+        "max_seconds": 1.6195134580000001,
+        "samples_seconds": [
+          1.6185448750000004,
+          1.6103701249999993,
+          1.6195134580000001,
+          1.6070132079999997,
+          1.611239416
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.007058834,
+        "min_seconds": 0.006938917,
+        "max_seconds": 0.007217791,
+        "samples_seconds": [
+          0.006938917,
+          0.007034708,
+          0.007058834,
+          0.007150292,
+          0.007217791
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.007268291000000815,
+        "min_seconds": 0.00711958399999979,
+        "max_seconds": 0.007393541999999087,
+        "samples_seconds": [
+          0.00711958399999979,
+          0.007204999999999018,
+          0.007268291000000815,
+          0.007326334000000045,
+          0.007393541999999087
+        ]
+      },
+      "qiskit_over_rust": 228.2585786831083,
+      "max_full_state_error": 3.0593910780451824e-18,
+      "compilation": {
+        "seconds": 1.1875e-05,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 8,
+          "execution_operations": 21,
+          "fused_blocks": 3,
+          "fused_source_gates": 66,
+          "input_gates": 84,
+          "output_gates": 84,
+          "structured_fused_blocks": 0
+        }
+      },
+      "circuit_sha256": "101ea7ed5964673dc67c9c73078dc875970680839edd245fad16040fb2e78855"
+    },
+    {
+      "num_qubits": 20,
+      "family": "scrambled_bell",
+      "gates": 220,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 4.310665667000002,
+        "min_seconds": 4.269137208000004,
+        "max_seconds": 4.366624417000004,
+        "samples_seconds": [
+          4.282121958000001,
+          4.269137208000004,
+          4.310665667000002,
+          4.366624417000004,
+          4.3627773340000005
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.124938292,
+        "min_seconds": 0.124825458,
+        "max_seconds": 0.127210875,
+        "samples_seconds": [
+          0.124938292,
+          0.124935708,
+          0.126723541,
+          0.127210875,
+          0.124825458
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.12510858299999938,
+        "min_seconds": 0.12498658299999477,
+        "max_seconds": 0.127378874999998,
+        "samples_seconds": [
+          0.12510858299999938,
+          0.1250918749999954,
+          0.12690050000000497,
+          0.127378874999998,
+          0.12498658299999477
+        ]
+      },
+      "qiskit_over_rust": 34.50235790801432,
+      "max_full_state_error": 9.678592088575078e-18,
+      "compilation": null,
+      "circuit_sha256": "b3eddd488bfb93f3118bd81d918d73c595f3c8e474d36ff560c72e3e53a67d86"
+    },
+    {
+      "num_qubits": 20,
+      "family": "scrambled_bell",
+      "gates": 220,
+      "threads": 1,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 4.310665667000002,
+        "min_seconds": 4.269137208000004,
+        "max_seconds": 4.366624417000004,
+        "samples_seconds": [
+          4.282121958000001,
+          4.269137208000004,
+          4.310665667000002,
+          4.366624417000004,
+          4.3627773340000005
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.116640292,
+        "min_seconds": 0.1161335,
+        "max_seconds": 0.117438042,
+        "samples_seconds": [
+          0.117438042,
+          0.1166535,
+          0.116640292,
+          0.1161335,
+          0.116387041
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.11683187499999548,
+        "min_seconds": 0.11634612499999974,
+        "max_seconds": 0.11763562500000546,
+        "samples_seconds": [
+          0.11763562500000546,
+          0.11686783400000422,
+          0.11683187499999548,
+          0.11634612499999974,
+          0.11659245799999951
+        ]
+      },
+      "qiskit_over_rust": 36.95691765757927,
+      "max_full_state_error": 9.311523146975038e-18,
+      "compilation": {
+        "seconds": 3.3958e-05,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 14,
+          "execution_operations": 100,
+          "fused_blocks": 40,
+          "fused_source_gates": 160,
+          "input_gates": 220,
+          "output_gates": 220,
+          "structured_fused_blocks": 40
+        }
+      },
+      "circuit_sha256": "b3eddd488bfb93f3118bd81d918d73c595f3c8e474d36ff560c72e3e53a67d86"
+    },
+    {
+      "num_qubits": 20,
+      "family": "scrambled_bell",
+      "gates": 220,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": false,
+      "optimize": false,
+      "qiskit": {
+        "median_seconds": 4.310665667000002,
+        "min_seconds": 4.269137208000004,
+        "max_seconds": 4.366624417000004,
+        "samples_seconds": [
+          4.282121958000001,
+          4.269137208000004,
+          4.310665667000002,
+          4.366624417000004,
+          4.3627773340000005
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.044368667,
+        "min_seconds": 0.044230834,
+        "max_seconds": 0.044685459,
+        "samples_seconds": [
+          0.044230834,
+          0.044366792,
+          0.044368667,
+          0.044685459,
+          0.044621334
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.04461587500000519,
+        "min_seconds": 0.04445004200000113,
+        "max_seconds": 0.04489366600000011,
+        "samples_seconds": [
+          0.04445004200000113,
+          0.04457512500000149,
+          0.04461587500000519,
+          0.04489366600000011,
+          0.04483979099999402
+        ]
+      },
+      "qiskit_over_rust": 97.15562712307769,
+      "max_full_state_error": 9.678592088575078e-18,
+      "compilation": null,
+      "circuit_sha256": "b3eddd488bfb93f3118bd81d918d73c595f3c8e474d36ff560c72e3e53a67d86"
+    },
+    {
+      "num_qubits": 20,
+      "family": "scrambled_bell",
+      "gates": 220,
+      "threads": 4,
+      "precision": "f64",
+      "fusion": true,
+      "optimize": true,
+      "qiskit": {
+        "median_seconds": 4.310665667000002,
+        "min_seconds": 4.269137208000004,
+        "max_seconds": 4.366624417000004,
+        "samples_seconds": [
+          4.282121958000001,
+          4.269137208000004,
+          4.310665667000002,
+          4.366624417000004,
+          4.3627773340000005
+        ]
+      },
+      "rust": {
+        "median_seconds": 0.033777083,
+        "min_seconds": 0.033757667,
+        "max_seconds": 0.035169791,
+        "samples_seconds": [
+          0.034577,
+          0.035169791,
+          0.033757667,
+          0.033769083,
+          0.033777083
+        ]
+      },
+      "rust_request": {
+        "median_seconds": 0.034003374999997504,
+        "min_seconds": 0.03399420899999939,
+        "max_seconds": 0.03542099999999948,
+        "samples_seconds": [
+          0.03481637500000545,
+          0.03542099999999948,
+          0.03399729200000223,
+          0.03399420899999939,
+          0.034003374999997504
+        ]
+      },
+      "qiskit_over_rust": 127.62101650400072,
+      "max_full_state_error": 9.311523146975038e-18,
+      "compilation": {
+        "seconds": 3.2417e-05,
+        "stats": {
+          "compressed_cx_runs": 0,
+          "cx_runs": 14,
+          "execution_operations": 100,
+          "fused_blocks": 40,
+          "fused_source_gates": 160,
+          "input_gates": 220,
+          "output_gates": 220,
+          "structured_fused_blocks": 40
+        }
+      },
+      "circuit_sha256": "b3eddd488bfb93f3118bd81d918d73c595f3c8e474d36ff560c72e3e53a67d86"
+    }
+  ]
+}

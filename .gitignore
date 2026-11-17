@@ -1,0 +1,6 @@
+/target/
+/.venv/
+/benchmark-results/
+__pycache__/
+*.pyc
+/.venv-rebuild/

@@ -1,0 +1,2 @@
+# Install the pinned editable Qiskit submodule first (see README.md).
+qiskit-aer==0.18.2

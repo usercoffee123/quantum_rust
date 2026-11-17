@@ -1,0 +1,7 @@
+# Additional environment for the optimized Aer comparison on Python 3.9.
+-r requirements-rebuild.txt
+qiskit-aer==0.17.2
+psutil==7.2.2
+python-dateutil==3.0.0
+six==1.17.0
+tzdata==2026.6

@@ -1,0 +1,481 @@
+{
+  "num_qubits": 20,
+  "gates": [
+    {
+      "gate": "h",
+      "target": 0
+    },
+    {
+      "gate": "h",
+      "target": 1
+    },
+    {
+      "gate": "h",
+      "target": 2
+    },
+    {
+      "gate": "h",
+      "target": 3
+    },
+    {
+      "gate": "h",
+      "target": 4
+    },
+    {
+      "gate": "h",
+      "target": 5
+    },
+    {
+      "gate": "h",
+      "target": 6
+    },
+    {
+      "gate": "h",
+      "target": 7
+    },
+    {
+      "gate": "h",
+      "target": 8
+    },
+    {
+      "gate": "h",
+      "target": 9
+    },
+    {
+      "gate": "h",
+      "target": 10
+    },
+    {
+      "gate": "h",
+      "target": 11
+    },
+    {
+      "gate": "h",
+      "target": 12
+    },
+    {
+      "gate": "h",
+      "target": 13
+    },
+    {
+      "gate": "h",
+      "target": 14
+    },
+    {
+      "gate": "h",
+      "target": 15
+    },
+    {
+      "gate": "h",
+      "target": 16
+    },
+    {
+      "gate": "h",
+      "target": 17
+    },
+    {
+      "gate": "h",
+      "target": 18
+    },
+    {
+      "gate": "h",
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.123,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.14,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.157,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.191,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.20800000000000002,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.225,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.259,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.276,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.29300000000000004,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.327,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.34400000000000003,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.361,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.395,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.41200000000000003,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.42900000000000005,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.463,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.48000000000000004,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.497,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.531,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.548,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.5650000000000001,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.599,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.6160000000000001,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.633,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.667,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.684,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.7010000000000001,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.7350000000000001,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.752,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.769,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.803,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.8200000000000001,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.8370000000000001,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.871,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.888,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.905,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.9390000000000001,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 0.9560000000000001,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 0.9730000000000001,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 1.0070000000000001,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 1.024,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 1.041,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 1.0750000000000002,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 1.092,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 1.109,
+      "target": 19
+    },
+    {
+      "gate": "cx",
+      "control": 0,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 1.143,
+      "target": 19
+    },
+    {
+      "gate": "rz",
+      "theta": 1.1600000000000001,
+      "target": 19
+    },
+    {
+      "gate": "ry",
+      "theta": 1.177,
+      "target": 19
+    },
+    {
+      "gate": "cz",
+      "control": 0,
+      "target": 19
+    }
+  ],
+  "threads": 1,
+  "precision": "f64",
+  "fusion": true,
+  "optimize": false,
+  "memory_limit_bytes": 268435456,
+  "include_state": false,
+  "include_norm": false,
+  "probe_indices": [
+    0,
+    1,
+    13628,
+    52451,
+    55649,
+    62489,
+    66653,
+    91122,
+    96100,
+    145867,
+    149741,
+    165255,
+    167335,
+    182323,
+    194502,
+    196493,
+    202828,
+    211815,
+    214350,
+    214947,
+    233478,
+    261779,
+    292632,
+    326064,
+    334829,
+    341110,
+    342679,
+    358903,
+    403258,
+    416992,
+    439368,
+    451545,
+    458517,
+    462297,
+    468106,
+    477937,
+    487925,
+    488197,
+    513405,
+    513575,
+    554740,
+    559893,
+    576778,
+    582738,
+    582952,
+    583408,
+    606890,
+    614839,
+    705889,
+    713557,
+    721327,
+    745056,
+    752834,
+    758403,
+    765108,
+    776325,
+    793844,
+    796765,
+    797182,
+    879796,
+    884834,
+    886286,
+    942059,
+    950870,
+    963483,
+    969429,
+    1048575
+  ]
+}

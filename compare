@@ -1,0 +1,11 @@
+#!/bin/sh
+# Prefer the working reconstruction environment; allow an explicit interpreter.
+project_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if [ -n "${QISKIT_BENCH_PYTHON:-}" ]; then
+    python_bin=$QISKIT_BENCH_PYTHON
+elif [ -x "$project_dir/.venv-rebuild/bin/python" ]; then
+    python_bin="$project_dir/.venv-rebuild/bin/python"
+else
+    python_bin=python3
+fi
+exec "$python_bin" "$project_dir/tools/compare_runtimes.py" "$@"

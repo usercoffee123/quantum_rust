@@ -1,0 +1,528 @@
+{
+  "case": {
+    "num_qubits": 16,
+    "family": "mixed",
+    "threads": 4,
+    "precision": "f64",
+    "fusion": true,
+    "optimize_cx": false,
+    "id": "16q-mixed-f64-4t-fusion-1",
+    "status": "running",
+    "reason": null,
+    "memory_admission": {
+      "state_bytes": 1048576,
+      "estimated_working_bytes": 8388608,
+      "snapshot": {
+        "physical_bytes": 17179869184,
+        "available_bytes": 7001817088,
+        "method": "macOS free+inactive+speculative+purgeable pages (estimate)",
+        "Swapins": 2006,
+        "Swapouts": 4588
+      }
+    },
+    "request_sha256": "804522f4edb68ac8ac90f86f592c44ecb8781b75893fd3c06b77fbb922be2ebd",
+    "gate_count": 80,
+    "circuit_sha256": "bb57426ab54c4e26cff3a204ff84a28fe67870f41dfa3f119606b9daf3c2a712",
+    "request_path": "cases/16q-mixed-f64-4t-fusion-1.request.json"
+  },
+  "config": {
+    "qubits": [
+      16,
+      20
+    ],
+    "threads": [
+      1,
+      4
+    ],
+    "precisions": [
+      "f64"
+    ],
+    "families": [
+      "mixed",
+      "scrambled_bell"
+    ],
+    "engines": [
+      "python",
+      "aer"
+    ],
+    "fusion": "on",
+    "optimize_cx": false,
+    "target": "high",
+    "layers": 8,
+    "depth": 64,
+    "seed": 42,
+    "repetitions": 5,
+    "warmup": 1,
+    "full_check_max_qubits": 20,
+    "max_state_mib": 256,
+    "reserve_mib": 1024,
+    "timeout": 600,
+    "dry_run": false
+  },
+  "request": {
+    "num_qubits": 16,
+    "gates": [
+      {
+        "gate": "h",
+        "target": 0
+      },
+      {
+        "gate": "h",
+        "target": 1
+      },
+      {
+        "gate": "h",
+        "target": 2
+      },
+      {
+        "gate": "h",
+        "target": 3
+      },
+      {
+        "gate": "h",
+        "target": 4
+      },
+      {
+        "gate": "h",
+        "target": 5
+      },
+      {
+        "gate": "h",
+        "target": 6
+      },
+      {
+        "gate": "h",
+        "target": 7
+      },
+      {
+        "gate": "h",
+        "target": 8
+      },
+      {
+        "gate": "h",
+        "target": 9
+      },
+      {
+        "gate": "h",
+        "target": 10
+      },
+      {
+        "gate": "h",
+        "target": 11
+      },
+      {
+        "gate": "h",
+        "target": 12
+      },
+      {
+        "gate": "h",
+        "target": 13
+      },
+      {
+        "gate": "h",
+        "target": 14
+      },
+      {
+        "gate": "h",
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.123,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.14,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.157,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.191,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.20800000000000002,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.225,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.259,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.276,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.29300000000000004,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.327,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.34400000000000003,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.361,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.395,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.41200000000000003,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.42900000000000005,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.463,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.48000000000000004,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.497,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.531,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.548,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.5650000000000001,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.599,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.6160000000000001,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.633,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.667,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.684,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.7010000000000001,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.7350000000000001,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.752,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.769,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.803,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.8200000000000001,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.8370000000000001,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.871,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.888,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.905,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.9390000000000001,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 0.9560000000000001,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 0.9730000000000001,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 1.0070000000000001,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 1.024,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 1.041,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 1.0750000000000002,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 1.092,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 1.109,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 1.143,
+        "target": 15
+      },
+      {
+        "gate": "rz",
+        "theta": 1.1600000000000001,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "theta": 1.177,
+        "target": 15
+      },
+      {
+        "gate": "cz",
+        "control": 0,
+        "target": 15
+      }
+    ],
+    "threads": 4,
+    "precision": "f64",
+    "fusion": true,
+    "optimize": false,
+    "memory_limit_bytes": 268435456,
+    "include_state": false,
+    "include_norm": false,
+    "probe_indices": [
+      0,
+      1,
+      851,
+      3278,
+      3478,
+      3905,
+      4165,
+      5695,
+      6006,
+      9116,
+      9358,
+      10328,
+      10458,
+      11395,
+      12156,
+      12280,
+      12676,
+      13238,
+      13396,
+      13434,
+      14592,
+      16361,
+      18289,
+      20379,
+      20926,
+      21319,
+      21417,
+      22431,
+      25203,
+      26062,
+      27460,
+      28221,
+      28657,
+      28893,
+      29256,
+      29871,
+      30495,
+      30512,
+      32087,
+      32098,
+      34671,
+      34993,
+      36048,
+      36421,
+      36434,
+      36463,
+      37930,
+      38427,
+      44118,
+      44597,
+      45082,
+      46566,
+      47052,
+      47400,
+      47819,
+      48520,
+      49615,
+      49797,
+      49823,
+      54987,
+      55302,
+      55392,
+      58878,
+      59429,
+      60217,
+      60589,
+      65535
+    ]
+  },
+  "binary": "/Users/computer/Documents/qiskit_rust/target/release/statevector"
+}

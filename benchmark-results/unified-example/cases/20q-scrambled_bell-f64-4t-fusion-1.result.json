@@ -1,0 +1,365 @@
+{
+  "num_qubits": 20,
+  "family": "scrambled_bell",
+  "threads": 4,
+  "precision": "f64",
+  "fusion": true,
+  "optimize_cx": false,
+  "id": "20q-scrambled_bell-f64-4t-fusion-1",
+  "status": "passed",
+  "reason": null,
+  "memory_admission": {
+    "state_bytes": 16777216,
+    "estimated_working_bytes": 134217728,
+    "snapshot": {
+      "physical_bytes": 17179869184,
+      "available_bytes": 5764448256,
+      "method": "macOS free+inactive+speculative+purgeable pages (estimate)",
+      "Swapins": 2002,
+      "Swapouts": 4588
+    }
+  },
+  "request_sha256": "9e058286ceedceb34d49679ead3db84e8e1d870ac83d00785215a63d008b60b9",
+  "gate_count": 420,
+  "circuit_sha256": "2ce1c631d09982ad89d243e28df04030542705bd9ceca3fc5b0d034519f9b91c",
+  "request_path": "cases/20q-scrambled_bell-f64-4t-fusion-1.request.json",
+  "validation_scope": "full",
+  "versions": {
+    "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+    "qiskit": "2.2.3",
+    "numpy": "2.0.2",
+    "aer": "0.17.2"
+  },
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "OMP_THREAD_LIMIT": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "validation": {
+    "rust": {
+      "passed": true,
+      "max_absolute_error": 7.385319077612974e-18,
+      "relative_l2_error": 2.0467387735179067e-15,
+      "scaled_peak_error": 1.86949555168123e-15,
+      "norm_drift": 4.440892098500626e-16,
+      "normalized_fidelity": 0.9999999999999999
+    },
+    "aer": {
+      "passed": true,
+      "max_absolute_error": 7.857287273937904e-18,
+      "relative_l2_error": 1.77445834221345e-15,
+      "scaled_peak_error": 1.9889680395036046e-15,
+      "norm_drift": 9.992007221626409e-16,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    "python": {
+      "passed": true,
+      "reference": "Qiskit FP64 Statevector"
+    }
+  },
+  "unsupported": {},
+  "trial_order": [
+    {
+      "trial": 0,
+      "measured": false,
+      "engines": [
+        "python",
+        "rust",
+        "aer"
+      ]
+    },
+    {
+      "trial": 1,
+      "measured": true,
+      "engines": [
+        "rust",
+        "aer",
+        "python"
+      ]
+    },
+    {
+      "trial": 2,
+      "measured": true,
+      "engines": [
+        "aer",
+        "python",
+        "rust"
+      ]
+    },
+    {
+      "trial": 3,
+      "measured": true,
+      "engines": [
+        "python",
+        "rust",
+        "aer"
+      ]
+    }
+  ],
+  "raw_samples": {
+    "rust": [
+      0.04357541699999956,
+      0.04008187499999849,
+      0.04875266699999514
+    ],
+    "python": [
+      6.961810582999998,
+      7.031968791999997,
+      7.036882624999997
+    ],
+    "aer": [
+      0.07107045799999945,
+      0.07321808400000052,
+      0.09050537499999933
+    ]
+  },
+  "timings": {
+    "rust": {
+      "median_seconds": 0.04357541699999956,
+      "min_seconds": 0.04008187499999849,
+      "max_seconds": 0.04875266699999514,
+      "samples_seconds": [
+        0.04357541699999956,
+        0.04008187499999849,
+        0.04875266699999514
+      ]
+    },
+    "python": {
+      "median_seconds": 7.031968791999997,
+      "min_seconds": 6.961810582999998,
+      "max_seconds": 7.036882624999997,
+      "samples_seconds": [
+        6.961810582999998,
+        7.031968791999997,
+        7.036882624999997
+      ]
+    },
+    "aer": {
+      "median_seconds": 0.07321808400000052,
+      "min_seconds": 0.07107045799999945,
+      "max_seconds": 0.09050537499999933,
+      "samples_seconds": [
+        0.07107045799999945,
+        0.07321808400000052,
+        0.09050537499999933
+      ]
+    }
+  },
+  "aer_metadata": {
+    "num_bind_params": 1,
+    "runtime_parameter_bind": false,
+    "parallel_state_update": 4,
+    "parallel_shots": 1,
+    "noise": "ideal",
+    "batched_shots_optimization": false,
+    "remapped_qubits": false,
+    "active_input_qubits": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "device": "CPU",
+    "time_taken": 0.086761334,
+    "measure_sampling": true,
+    "num_clbits": 0,
+    "max_memory_mb": 256,
+    "input_qubit_map": [],
+    "num_qubits": 20,
+    "method": "statevector",
+    "required_memory_mb": 16,
+    "result_subtypes": {
+      "amplitudes": "single"
+    },
+    "result_types": {
+      "amplitudes": "save_amplitudes"
+    },
+    "fusion": {
+      "enabled": true,
+      "threshold": 14,
+      "time_taken": 0.001116667,
+      "parallelization": 1,
+      "applied": true,
+      "max_fused_qubits": 5,
+      "cost_factor": 1.8,
+      "method": "unitary"
+    }
+  },
+  "probe_checks": [
+    {
+      "trial": 0,
+      "engine": "python",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 0,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 4.7556820025965576e-18,
+      "relative_l2_error": 2.005237494168257e-15,
+      "scaled_peak_error": 2.13072992114453e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 0,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 3.836298902887396e-18,
+      "relative_l2_error": 1.5405695761425952e-15,
+      "scaled_peak_error": 1.718810646795374e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    {
+      "trial": 1,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 4.7556820025965576e-18,
+      "relative_l2_error": 2.005237494168257e-15,
+      "scaled_peak_error": 2.13072992114453e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 1,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 3.836298902887396e-18,
+      "relative_l2_error": 1.5405695761425952e-15,
+      "scaled_peak_error": 1.718810646795374e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    {
+      "trial": 1,
+      "engine": "python",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 2,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 3.836298902887396e-18,
+      "relative_l2_error": 1.5405695761425952e-15,
+      "scaled_peak_error": 1.718810646795374e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    {
+      "trial": 2,
+      "engine": "python",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 2,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 4.7556820025965576e-18,
+      "relative_l2_error": 2.005237494168257e-15,
+      "scaled_peak_error": 2.13072992114453e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 3,
+      "engine": "python",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 3,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 4.7556820025965576e-18,
+      "relative_l2_error": 2.005237494168257e-15,
+      "scaled_peak_error": 2.13072992114453e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 3,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 3.836298902887396e-18,
+      "relative_l2_error": 1.5405695761425952e-15,
+      "scaled_peak_error": 1.718810646795374e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    }
+  ],
+  "compilation": {
+    "seconds": 5.3958e-05,
+    "stats": {
+      "compressed_cx_runs": 0,
+      "cx_runs": 18,
+      "execution_operations": 180,
+      "fused_blocks": 80,
+      "fused_source_gates": 320,
+      "input_gates": 420,
+      "output_gates": 420,
+      "structured_fused_blocks": 80
+    }
+  },
+  "rust_parallel_threshold": 65536,
+  "rust_gate": {
+    "median_seconds": 0.043155333,
+    "min_seconds": 0.039617167,
+    "max_seconds": 0.0482865,
+    "samples_seconds": [
+      0.043155333,
+      0.039617167,
+      0.0482865
+    ]
+  },
+  "rust_compile": {
+    "median_seconds": 5.5792e-05,
+    "min_seconds": 5.3958e-05,
+    "max_seconds": 5.9959e-05,
+    "samples_seconds": [
+      5.9959e-05,
+      5.5792e-05,
+      5.3958e-05
+    ]
+  },
+  "ratios": {
+    "python_over_rust": 161.3746758177912,
+    "aer_over_rust": 1.6802612353658315
+  }
+}

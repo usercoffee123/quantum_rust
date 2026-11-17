@@ -1,0 +1,9 @@
+# Fresh reconstruction verification environment (Python 3.9 on ARM64 macOS).
+# Separate from the historical pinned Qiskit source checkout and Aer environment.
+dill==0.4.1
+numpy==2.0.2
+qiskit==2.2.3
+rustworkx==0.17.1
+scipy==1.13.1
+stevedore==5.5.0
+typing_extensions==4.16.0

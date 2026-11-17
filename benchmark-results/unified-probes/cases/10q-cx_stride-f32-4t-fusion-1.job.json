@@ -1,0 +1,507 @@
+{
+  "case": {
+    "num_qubits": 10,
+    "family": "cx_stride",
+    "threads": 4,
+    "precision": "f32",
+    "fusion": true,
+    "optimize_cx": false,
+    "id": "10q-cx_stride-f32-4t-fusion-1",
+    "status": "running",
+    "reason": null,
+    "memory_admission": {
+      "state_bytes": 16384,
+      "estimated_working_bytes": 131072,
+      "snapshot": {
+        "physical_bytes": 17179869184,
+        "available_bytes": 3915923456,
+        "method": "macOS free+inactive+speculative+purgeable pages (estimate)",
+        "Swapins": 2002,
+        "Swapouts": 4588
+      }
+    },
+    "request_sha256": "4ab5eee003b18133a4a9111330170cd9f98d405f8441be5b5925260aff6b917e",
+    "gate_count": 74,
+    "circuit_sha256": "34147cea993dc21c408c8d44aed7441e1c592ba1ef5f006f63ecbc2c9fe53dba",
+    "request_path": "cases/10q-cx_stride-f32-4t-fusion-1.request.json"
+  },
+  "config": {
+    "qubits": [
+      10
+    ],
+    "threads": [
+      4
+    ],
+    "precisions": [
+      "f32",
+      "f16"
+    ],
+    "families": [
+      "cx_stride",
+      "diagonal"
+    ],
+    "engines": [
+      "aer"
+    ],
+    "fusion": "both",
+    "optimize_cx": false,
+    "target": "high",
+    "layers": 8,
+    "depth": 64,
+    "seed": 42,
+    "repetitions": 2,
+    "warmup": 0,
+    "full_check_max_qubits": 0,
+    "max_state_mib": 256,
+    "reserve_mib": 1024,
+    "timeout": 600,
+    "dry_run": false
+  },
+  "request": {
+    "num_qubits": 10,
+    "gates": [
+      {
+        "gate": "h",
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "h",
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "h",
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "h",
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      },
+      {
+        "gate": "h",
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 8
+      }
+    ],
+    "threads": 4,
+    "precision": "f32",
+    "fusion": true,
+    "optimize": false,
+    "memory_limit_bytes": 268435456,
+    "include_state": false,
+    "include_norm": false,
+    "probe_indices": [
+      0,
+      1,
+      13,
+      51,
+      54,
+      61,
+      65,
+      88,
+      93,
+      114,
+      142,
+      146,
+      161,
+      163,
+      178,
+      189,
+      191,
+      198,
+      206,
+      209,
+      228,
+      255,
+      285,
+      318,
+      326,
+      333,
+      334,
+      350,
+      393,
+      407,
+      429,
+      440,
+      447,
+      449,
+      451,
+      457,
+      466,
+      469,
+      476,
+      501,
+      541,
+      546,
+      552,
+      563,
+      569,
+      592,
+      600,
+      664,
+      689,
+      696,
+      704,
+      727,
+      735,
+      740,
+      747,
+      758,
+      775,
+      777,
+      778,
+      859,
+      864,
+      865,
+      919,
+      928,
+      940,
+      946,
+      1023
+    ]
+  },
+  "binary": "/Users/computer/Documents/qiskit_rust/target/release/statevector"
+}

@@ -1,0 +1,2234 @@
+{
+  "case": {
+    "num_qubits": 20,
+    "family": "scrambled_bell",
+    "threads": 4,
+    "precision": "f64",
+    "fusion": true,
+    "optimize_cx": false,
+    "id": "20q-scrambled_bell-f64-4t-fusion-1",
+    "status": "running",
+    "reason": null,
+    "memory_admission": {
+      "state_bytes": 16777216,
+      "estimated_working_bytes": 134217728,
+      "snapshot": {
+        "physical_bytes": 17179869184,
+        "available_bytes": 6662602752,
+        "method": "macOS free+inactive+speculative+purgeable pages (estimate)",
+        "Swapins": 2006,
+        "Swapouts": 4588
+      }
+    },
+    "request_sha256": "9e058286ceedceb34d49679ead3db84e8e1d870ac83d00785215a63d008b60b9",
+    "gate_count": 420,
+    "circuit_sha256": "2ce1c631d09982ad89d243e28df04030542705bd9ceca3fc5b0d034519f9b91c",
+    "request_path": "cases/20q-scrambled_bell-f64-4t-fusion-1.request.json"
+  },
+  "config": {
+    "qubits": [
+      16,
+      20
+    ],
+    "threads": [
+      1,
+      4
+    ],
+    "precisions": [
+      "f64"
+    ],
+    "families": [
+      "mixed",
+      "scrambled_bell"
+    ],
+    "engines": [
+      "python",
+      "aer"
+    ],
+    "fusion": "on",
+    "optimize_cx": false,
+    "target": "high",
+    "layers": 8,
+    "depth": 64,
+    "seed": 42,
+    "repetitions": 5,
+    "warmup": 1,
+    "full_check_max_qubits": 20,
+    "max_state_mib": 256,
+    "reserve_mib": 1024,
+    "timeout": 600,
+    "dry_run": false
+  },
+  "request": {
+    "num_qubits": 20,
+    "gates": [
+      {
+        "gate": "h",
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 10
+      },
+      {
+        "gate": "h",
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 11
+      },
+      {
+        "gate": "h",
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 12
+      },
+      {
+        "gate": "h",
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 13
+      },
+      {
+        "gate": "h",
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 14
+      },
+      {
+        "gate": "h",
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 15
+      },
+      {
+        "gate": "h",
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 16
+      },
+      {
+        "gate": "h",
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 17
+      },
+      {
+        "gate": "h",
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 18
+      },
+      {
+        "gate": "h",
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 19
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": 0.8760444114976647
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": -2.984445443853267
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": -1.4135324813693264
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": -1.7391182232484002
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": 1.48579245840624
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": 1.1102356231618007
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": 2.4641368975791265
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": -2.5953398577893
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": -0.49057967536482705
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": -2.9543712022217035
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": -1.767849742712292
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": 0.0336482675267602
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": -2.9748622387603785
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": -1.8922588482813363
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": 0.9417516972311732
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": 0.2823756506090276
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": -1.7565233760781591
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": 0.5608728333644475
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": 1.94420889899199
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": -3.100759742265709
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": 1.921519029768552
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": 1.2449465353634794
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": -1.0037356074436814
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": -2.164686144804776
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": 2.872754457540087
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": -1.0267067532613403
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": -2.558853333161669
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": -2.533905735706128
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": 2.1833714969620397
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": 0.6517298762564989
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": 1.9297438540570226
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": 1.443447386746711
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": 0.2276278119353341
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": 2.9726740168302266
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": -0.7631910164518914
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": 0.32698092979229054
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": 2.0697105465508416
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": 0.7446815666655939
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": 2.272671481538147
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": 0.48601786255610824
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 10,
+        "target": 13
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 16
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 11,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 14
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": 1.268074428213148
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": 1.1532639952671007
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": -2.6929574545101085
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": 0.8480935971880208
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": 0.21450717374197925
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": -1.6034002456413106
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": -0.23712608239313981
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": -1.4454604346337578
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": 2.6728116095998278
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": 1.1822564525983292
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": -1.7617098192661105
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": -1.104064141339423
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": 1.6858639284451824
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": -2.79012416343435
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": 2.0219453304758552
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": 1.9166592934225255
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": -0.6209999580132681
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": -2.725717381821889
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": 2.595810825347737
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 0.42210471238529346
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": 1.3691957440062241
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": -1.8056206760724438
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": -0.004830139063157102
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": 2.417035540420433
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": 0.8975647719464313
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": -2.243903975710846
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": -2.264269481510341
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": 1.5393111726988655
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": 0.24490153375120194
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": 1.5520335520438922
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": -0.4496635248337735
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": 0.5248528466842823
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": -0.8671019171971706
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": 3.124790021143153
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": -2.2724286665750526
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": -0.04074121095079697
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": 1.607126694054676
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": 2.268876496397392
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": -2.1812623215308564
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": -2.1363960909541144
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 13,
+        "target": 17
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 10
+      },
+      {
+        "gate": "cx",
+        "control": 12,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 14
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 11
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": -2.147858175274846
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": -3.1212017311422544
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": 1.3954455764636595
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": 1.3802943510154222
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": 2.9649603694536104
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": 1.6459570401203862
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": 0.048265385008430695
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": -2.4729937352623628
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": 0.7872843352032728
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": 2.1467718283508717
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": 0.048147307452522714
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": -1.891797341546719
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": -0.7922226288381786
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": -2.12655012575655
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": 2.8494229512661384
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": 2.65423160859266
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": 2.6294721751373187
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": 0.6216871593055004
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": -0.07159244789822905
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": -2.4387070055059437
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": -0.8609172304497772
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": 3.0493641574398973
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": 1.9275229461142045
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": -1.6370694155034955
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": -1.6281518030083886
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": 0.42321615892268216
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": -2.6467475249286485
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": 1.4571183925511217
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": 1.985632662616191
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": 3.0032651477331003
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": 0.20549892384197754
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": -2.351416055381167
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": 1.0037440222961092
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": 2.8076330588549956
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": -2.104069371144308
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": 0.17387953450038474
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": 0.6697493361615674
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": 2.917678188225258
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": 2.6949429572823522
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": 1.6038785329364007
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 14
+      },
+      {
+        "gate": "cx",
+        "control": 15,
+        "target": 19
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 10,
+        "target": 18
+      },
+      {
+        "gate": "cx",
+        "control": 13,
+        "target": 11
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": -3.0964112797323593
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": 1.3059031815835445
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": -2.7716778665741617
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": -2.718103902308026
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": -2.944219217096021
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": -1.0654492259256534
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": 0.08894552398800082
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": -1.3918684002641803
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": -0.09164340463549214
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": 0.24651406128241415
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": 1.4033655602641764
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": 2.4025837194384305
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": 0.4788519177622752
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": -1.6147959504838205
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": -0.16981600778683337
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": -0.583959484440268
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": -2.548926194983987
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": 0.9989180758455438
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": -0.9154753888248277
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": -0.5585608729659928
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": 2.286053711567887
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": -2.801225045900145
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": 0.964189269177691
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": 0.9184744655438122
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": -2.760751990400236
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": 1.4339082657923683
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": 1.8886784476944465
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": -2.455035075659508
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": -1.9377967273078756
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": 0.2279901158294102
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": -2.2608013041572224
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": -1.988703323088207
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": -0.23481477152396213
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": 2.352964644361397
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": -2.667935430573085
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": 1.9353608423827087
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": 2.2366059485996557
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": -2.526413971108858
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": 0.9559545625339094
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": 0.25502153632055125
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 14
+      },
+      {
+        "gate": "cx",
+        "control": 11,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 13
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 16
+      },
+      {
+        "gate": "cx",
+        "control": 12,
+        "target": 10
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": 1.2352208469368842
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": 1.4483076236116226
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": 1.7804129923924235
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": 1.0170674489028055
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": -0.08374599045896192
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": -1.948429164109036
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": -1.7737375673140534
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": -2.7741312925340362
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": 1.4811803781232848
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": -2.7585849361271997
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": -1.1711555205837811
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": -2.8265390568252764
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": -0.1458420482589906
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": 2.635087058464298
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": 0.19557127580114964
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": -2.784207713959973
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": 0.04918789728634643
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": 2.2075503186932615
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": -2.711060422716961
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": -2.714581955363996
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": 2.27337709367416
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": -0.6045960421484553
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": 2.7746302983132214
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": 0.43778351325195475
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": 0.49586306258576673
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": -2.8918884250122505
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": -2.6264757247518453
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": 0.9888047547581094
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": 0.40983284952970456
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": -1.1537822857141524
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": -1.5031534663565829
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": 1.0664197509205238
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": -1.1675172231197024
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": -1.4726874510791228
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": -2.319260154297654
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": 0.9142084186077586
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": -0.26876593713366237
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": 2.6956016782827845
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": 2.7377992727076803
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": -3.0830619117650313
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 10
+      },
+      {
+        "gate": "cx",
+        "control": 14,
+        "target": 16
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 19
+      },
+      {
+        "gate": "cx",
+        "control": 12,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 13,
+        "target": 11
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": 1.0547156151829986
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": 0.34307625907761263
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": 2.712803203270812
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": -2.490739466715157
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": 2.375841790570484
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": -1.4799042614521625
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": 2.4486371546794548
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": 1.523148947004608
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": -2.1648846308597953
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": -1.3712657885598487
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": -1.8181675012505003
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": -0.9872122672056824
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": 1.178079204822878
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": 2.2174166163857514
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": 0.03398611436695376
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": -1.5637512922636931
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": 2.5645389221929644
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": -2.8224137913084024
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": 0.8437340663158603
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": 2.069355076091197
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": -2.8645873596128757
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": -1.0457951111126227
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": -2.3196284835786387
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": 3.014659453912172
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": -2.1263431543606712
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": -0.36545825727552517
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": 1.2922466796475138
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": 0.38268911785906035
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": -2.43866833081372
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": 2.79633752116432
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": 1.2002116933658957
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": -2.205056957099008
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": -2.9152211858809447
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": -0.8217402045269444
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": 0.3300249161263551
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": -0.4411630939963165
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": -2.8787741865271266
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": -0.8504196102448063
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": 2.7211722244190124
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": 2.966896634461529
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 14,
+        "target": 18
+      },
+      {
+        "gate": "cx",
+        "control": 10,
+        "target": 17
+      },
+      {
+        "gate": "cx",
+        "control": 15,
+        "target": 11
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 13
+      },
+      {
+        "gate": "cx",
+        "control": 12,
+        "target": 19
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": 1.4863784131322317
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": -1.054409802130217
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": 2.706896045318394
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": 1.8989993842832122
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": 2.2874817539601677
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": 1.952495540116299
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": -1.465202939194183
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": 1.8056272934579383
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": -2.462407802004359
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": 2.338392862175838
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": 2.2531078480593063
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": -1.74400038768554
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": 1.9891723087364825
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": -0.24942213260782742
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": -1.2240218800425038
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": 1.8557105008188826
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": -1.7115680311289139
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": -2.9929046251709224
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": -1.9281224051904304
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": -1.079061984918261
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": 2.2892970519923503
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": 2.933550758638904
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": -1.3877986004531218
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": 0.8889559812536687
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": -0.6303393013813832
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": 3.023152645158162
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": 0.227550158199052
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": 2.7598083464558316
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": -2.4168790530525497
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": 2.955614207663163
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": -2.019617974679824
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": 2.906188816859369
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": -1.473618305035067
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": -2.460479361669479
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": -0.41114803074368256
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": 1.4359909671215387
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": -1.1706999618442695
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": 0.6673299065855516
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": 0.07177320067830051
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": -0.7213383664055297
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 10
+      },
+      {
+        "gate": "cx",
+        "control": 13,
+        "target": 18
+      },
+      {
+        "gate": "cx",
+        "control": 14,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 11
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 15
+      },
+      {
+        "gate": "ry",
+        "target": 0,
+        "theta": 1.3807567565593297
+      },
+      {
+        "gate": "rz",
+        "target": 0,
+        "theta": -1.254612190545931
+      },
+      {
+        "gate": "ry",
+        "target": 1,
+        "theta": -1.1982998082643816
+      },
+      {
+        "gate": "rz",
+        "target": 1,
+        "theta": -0.5755843305971946
+      },
+      {
+        "gate": "ry",
+        "target": 2,
+        "theta": -0.6132364540253192
+      },
+      {
+        "gate": "rz",
+        "target": 2,
+        "theta": -1.283936229087558
+      },
+      {
+        "gate": "ry",
+        "target": 3,
+        "theta": -2.341819824758094
+      },
+      {
+        "gate": "rz",
+        "target": 3,
+        "theta": -0.4998504267703314
+      },
+      {
+        "gate": "ry",
+        "target": 4,
+        "theta": 2.766886545747555
+      },
+      {
+        "gate": "rz",
+        "target": 4,
+        "theta": 1.1141215084369094
+      },
+      {
+        "gate": "ry",
+        "target": 5,
+        "theta": 2.5309018865974178
+      },
+      {
+        "gate": "rz",
+        "target": 5,
+        "theta": 0.7258016226657991
+      },
+      {
+        "gate": "ry",
+        "target": 6,
+        "theta": -1.2506688235218937
+      },
+      {
+        "gate": "rz",
+        "target": 6,
+        "theta": 0.30119839324135533
+      },
+      {
+        "gate": "ry",
+        "target": 7,
+        "theta": -3.139042059248195
+      },
+      {
+        "gate": "rz",
+        "target": 7,
+        "theta": -1.338860603330666
+      },
+      {
+        "gate": "ry",
+        "target": 8,
+        "theta": -0.44052574584305004
+      },
+      {
+        "gate": "rz",
+        "target": 8,
+        "theta": 0.5025592020066831
+      },
+      {
+        "gate": "ry",
+        "target": 9,
+        "theta": 0.9720441017891934
+      },
+      {
+        "gate": "rz",
+        "target": 9,
+        "theta": -0.21998568861772716
+      },
+      {
+        "gate": "ry",
+        "target": 10,
+        "theta": -0.36342069917235253
+      },
+      {
+        "gate": "rz",
+        "target": 10,
+        "theta": -1.7988671507713851
+      },
+      {
+        "gate": "ry",
+        "target": 11,
+        "theta": -0.16847616272396637
+      },
+      {
+        "gate": "rz",
+        "target": 11,
+        "theta": 2.5206934703662593
+      },
+      {
+        "gate": "ry",
+        "target": 12,
+        "theta": 1.859978423389947
+      },
+      {
+        "gate": "rz",
+        "target": 12,
+        "theta": -2.075390166243386
+      },
+      {
+        "gate": "ry",
+        "target": 13,
+        "theta": -2.6088065831241014
+      },
+      {
+        "gate": "rz",
+        "target": 13,
+        "theta": 0.0970878416656813
+      },
+      {
+        "gate": "ry",
+        "target": 14,
+        "theta": 0.8352920316715284
+      },
+      {
+        "gate": "rz",
+        "target": 14,
+        "theta": -1.0355427320597737
+      },
+      {
+        "gate": "ry",
+        "target": 15,
+        "theta": 2.0007136338379885
+      },
+      {
+        "gate": "rz",
+        "target": 15,
+        "theta": 1.577947455868375
+      },
+      {
+        "gate": "ry",
+        "target": 16,
+        "theta": 1.085707218389036
+      },
+      {
+        "gate": "rz",
+        "target": 16,
+        "theta": -1.7301337216005945
+      },
+      {
+        "gate": "ry",
+        "target": 17,
+        "theta": -1.8904223860625073
+      },
+      {
+        "gate": "rz",
+        "target": 17,
+        "theta": -2.9881234163024333
+      },
+      {
+        "gate": "ry",
+        "target": 18,
+        "theta": -1.6032015780642332
+      },
+      {
+        "gate": "rz",
+        "target": 18,
+        "theta": -0.15622295668717445
+      },
+      {
+        "gate": "ry",
+        "target": 19,
+        "theta": 2.197466744232977
+      },
+      {
+        "gate": "rz",
+        "target": 19,
+        "theta": -2.683999394029401
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 10,
+        "target": 17
+      },
+      {
+        "gate": "cx",
+        "control": 14,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 13
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 11
+      }
+    ],
+    "threads": 4,
+    "precision": "f64",
+    "fusion": true,
+    "optimize": false,
+    "memory_limit_bytes": 268435456,
+    "include_state": false,
+    "include_norm": false,
+    "probe_indices": [
+      0,
+      1,
+      13628,
+      52451,
+      55649,
+      62489,
+      66653,
+      91122,
+      96100,
+      145867,
+      149741,
+      165255,
+      167335,
+      182323,
+      194502,
+      196493,
+      202828,
+      211815,
+      214350,
+      214947,
+      233478,
+      261779,
+      292632,
+      326064,
+      334829,
+      341110,
+      342679,
+      358903,
+      403258,
+      416992,
+      439368,
+      451545,
+      458517,
+      462297,
+      468106,
+      477937,
+      487925,
+      488197,
+      513405,
+      513575,
+      554740,
+      559893,
+      576778,
+      582738,
+      582952,
+      583408,
+      606890,
+      614839,
+      705889,
+      713557,
+      721327,
+      745056,
+      752834,
+      758403,
+      765108,
+      776325,
+      793844,
+      796765,
+      797182,
+      879796,
+      884834,
+      886286,
+      942059,
+      950870,
+      963483,
+      969429,
+      1048575
+    ]
+  },
+  "binary": "/Users/computer/Documents/qiskit_rust/target/release/statevector"
+}
