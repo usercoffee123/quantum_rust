@@ -1,0 +1,552 @@
+{
+  "case": {
+    "num_qubits": 20,
+    "family": "cx_stride",
+    "threads": 4,
+    "precision": "f64",
+    "fusion": false,
+    "optimize_cx": false,
+    "id": "20q-cx_stride-f64-4t-fusion-0",
+    "status": "running",
+    "reason": null,
+    "memory_admission": {
+      "state_bytes": 16777216,
+      "estimated_working_bytes": 134217728,
+      "snapshot": {
+        "physical_bytes": 17179869184,
+        "available_bytes": 7478771712,
+        "method": "macOS free+inactive+speculative+purgeable pages (estimate)",
+        "Swapins": 0,
+        "Swapouts": 0
+      }
+    },
+    "request_sha256": "1fe74a47f0c1c9ca9506912d8eef817c4faefcfd5ddcfa7d2e6d68733e428aee",
+    "gate_count": 84,
+    "circuit_sha256": "566ee4199d6e3f532a3a2cffcf1ed7c9ede2f4765474ee321c4c0812fe603fc0",
+    "request_path": "cases/20q-cx_stride-f64-4t-fusion-0.request.json"
+  },
+  "config": {
+    "qubits": [
+      20,
+      22
+    ],
+    "threads": [
+      4
+    ],
+    "precisions": [
+      "f64"
+    ],
+    "families": [
+      "random_matching",
+      "cx_stride"
+    ],
+    "engines": [
+      "aer"
+    ],
+    "fusion": "both",
+    "optimize_cx": false,
+    "target": "high",
+    "layers": 8,
+    "depth": 64,
+    "seed": 42,
+    "repetitions": 3,
+    "warmup": 1,
+    "full_check_max_qubits": 20,
+    "max_state_mib": 256,
+    "reserve_mib": 1024,
+    "timeout": 600,
+    "dry_run": false
+  },
+  "request": {
+    "num_qubits": 20,
+    "gates": [
+      {
+        "gate": "h",
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 10
+      },
+      {
+        "gate": "h",
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 11
+      },
+      {
+        "gate": "h",
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 12
+      },
+      {
+        "gate": "h",
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 13
+      },
+      {
+        "gate": "h",
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 14
+      },
+      {
+        "gate": "h",
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 15
+      },
+      {
+        "gate": "h",
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 16
+      },
+      {
+        "gate": "h",
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 17
+      },
+      {
+        "gate": "h",
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 18
+      },
+      {
+        "gate": "h",
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 19
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 10
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 11
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 13
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 14
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 16
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 17
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 18
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 19
+      },
+      {
+        "gate": "cx",
+        "control": 10,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 11,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 12,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 13,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 14,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 15,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 10
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 11
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 13
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 14
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 16
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 17
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 18
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 19
+      },
+      {
+        "gate": "cx",
+        "control": 10,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 11,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 12,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 13,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 14,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 15,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 10
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 11
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 13
+      },
+      {
+        "gate": "cx",
+        "control": 4,
+        "target": 14
+      },
+      {
+        "gate": "cx",
+        "control": 5,
+        "target": 15
+      },
+      {
+        "gate": "cx",
+        "control": 6,
+        "target": 16
+      },
+      {
+        "gate": "cx",
+        "control": 7,
+        "target": 17
+      },
+      {
+        "gate": "cx",
+        "control": 8,
+        "target": 18
+      },
+      {
+        "gate": "cx",
+        "control": 9,
+        "target": 19
+      },
+      {
+        "gate": "cx",
+        "control": 10,
+        "target": 0
+      },
+      {
+        "gate": "cx",
+        "control": 11,
+        "target": 1
+      },
+      {
+        "gate": "cx",
+        "control": 12,
+        "target": 2
+      },
+      {
+        "gate": "cx",
+        "control": 13,
+        "target": 3
+      },
+      {
+        "gate": "cx",
+        "control": 14,
+        "target": 4
+      },
+      {
+        "gate": "cx",
+        "control": 15,
+        "target": 5
+      },
+      {
+        "gate": "cx",
+        "control": 16,
+        "target": 6
+      },
+      {
+        "gate": "cx",
+        "control": 17,
+        "target": 7
+      },
+      {
+        "gate": "cx",
+        "control": 18,
+        "target": 8
+      },
+      {
+        "gate": "cx",
+        "control": 19,
+        "target": 9
+      },
+      {
+        "gate": "cx",
+        "control": 0,
+        "target": 10
+      },
+      {
+        "gate": "cx",
+        "control": 1,
+        "target": 11
+      },
+      {
+        "gate": "cx",
+        "control": 2,
+        "target": 12
+      },
+      {
+        "gate": "cx",
+        "control": 3,
+        "target": 13
+      }
+    ],
+    "threads": 4,
+    "precision": "f64",
+    "fusion": false,
+    "optimize": false,
+    "memory_limit_bytes": 268435456,
+    "include_state": false,
+    "include_norm": false,
+    "probe_indices": [
+      0,
+      16410,
+      16412,
+      16415,
+      24013,
+      32801,
+      54102,
+      69670,
+      80709,
+      82010,
+      96109,
+      98400,
+      98409,
+      114803,
+      114904,
+      131215,
+      196812,
+      229600,
+      229602,
+      229605,
+      229615,
+      246011,
+      259498,
+      278810,
+      325100,
+      348662,
+      356244,
+      426414,
+      432174,
+      442801,
+      443607,
+      488953,
+      524806,
+      529889,
+      553211,
+      557615,
+      574015,
+      586741,
+      596067,
+      606813,
+      623209,
+      636792,
+      655226,
+      656015,
+      672410,
+      679582,
+      705205,
+      706311,
+      715996,
+      721615,
+      730791,
+      732671,
+      738014,
+      770803,
+      770807,
+      770808,
+      803425,
+      813075,
+      849449,
+      890046,
+      934802,
+      944290,
+      983011,
+      983881,
+      1010855,
+      1025712,
+      1044897
+    ]
+  },
+  "binary": "/Users/computer/Documents/qiskit_rust/target/release/statevector"
+}

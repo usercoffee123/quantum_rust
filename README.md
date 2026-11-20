@@ -1,9 +1,18 @@
 # Minimal Rust state-vector simulator
 
-To compare runtimes in one table, run `./compare`. It compares the optimized Rust
-engine with Python Qiskit Statevector and Qiskit Aer, validates the results, and
-saves a readable report plus CSV and raw samples. See [BENCHMARKING.md](BENCHMARKING.md)
-for timing policy, precision/thread controls, fusion diagnostics and saved results.
+Set up the wheel-based environment and run the comparison from the repository
+root. The pinned dependencies were tested with Python 3.9.6 on ARM64 macOS.
+
+```sh
+python3 -m venv .venv-rebuild
+.venv-rebuild/bin/python -m pip install -r tools/requirements-retry-aer.txt
+./compare
+```
+
+The runner builds the Rust release binary, compares it with Python Qiskit
+Statevector and Qiskit Aer, validates the results, and saves a report, CSV and
+raw samples. See [BENCHMARKING.md](BENCHMARKING.md) for timing, precision,
+threads and fusion controls.
 
 The Rust implementation was reconstructed on November 17, 2026 from the surviving
 tests and reports. Build and run it with:
@@ -15,26 +24,21 @@ cargo run --release --example bell
 echo '{"num_qubits":2,"threads":4,"fusion":true,"gates":[{"gate":"h","target":0},{"gate":"cx","control":0,"target":1}]}' | target/release/statevector
 ```
 
-For fresh correctness and performance comparisons using an installed Qiskit wheel:
+For the broader precision and worker-count parity suite, use the same Python
+environment. If you only need parity, install `tools/requirements-rebuild.txt`.
 
 ```sh
-python3 -m venv .venv-rebuild
-.venv-rebuild/bin/python -m pip install -r tools/requirements-rebuild.txt
 .venv-rebuild/bin/python tools/verify_rebuild.py
 ```
 
-This new harness does not require the missing historical Qiskit submodule. It
-checks all three storage precisions, serial/threaded execution, and optimization
+This harness checks all three storage precisions, serial/threaded execution, and optimization
 on/off against Qiskit's full state, then benchmarks identical FP64 circuits.
 See [the reconstruction results](REBUILD_RESULTS.md) and the
 [subsequent kernel optimizations and matched Aer comparison](OPTIMIZATION_RESULTS.md).
-The original tools below retain their pinned-source requirements and historical
-reproduction contracts.
-
 A CPU simulator with selectable FP64, FP32, and experimental FP16 storage.
 The engine is Rust. Python provides reference comparisons and profiling tools;
 the unified runner uses installed packages, while the historical runners require
-the pinned Qiskit submodule.
+the historical Qiskit source checkout.
 
 Supported: zero-state initialization, H/X/Y/Z/S/T, RX/RY/RZ, CX/CZ, arbitrary finite
 2×2 matrices, full probabilities, and norm checks. Qubit zero is the least-significant
@@ -113,8 +117,8 @@ path for testing, and a larger threshold can avoid overhead on cheap workloads.
 Workers receive disjoint amplitude pairs using safe mutable slices. Low target
 bits are grouped into coarse chunks. High target bits split corresponding lower
 and upper slices into paired chunks, so even the highest bit can use multiple
-workers. CX checks control bits against global amplitude indices; CZ partitions
-individual amplitudes. Gates retain their order and coefficients, and norm and
+workers. CX and CZ traverse active control-one pairs. Gates retain their order
+and coefficients, and norm and
 probability reductions remain serial FP64. Threaded gate results are tested for
 exact agreement with the serial implementation in all three storage modes.
 
@@ -216,22 +220,25 @@ reduced median request latency from 5.568 s to 3.288 s (1.69x), including
 compilation, with CX compression disabled. See the [fusion implementation and
 validation report](benchmark-results/2026-11-12-fusion/REPORT.md).
 
-## Install the actual Qiskit submodule
+## Set up the historical Qiskit source checkout
+
+The current repository has a `.gitmodules` declaration and lacks a tracked
+submodule entry. To use the historical source-based tools, check out the
+revision recorded in the original Aer comparison manually. [Historical Aer report](AER_25_QUBIT_COMPARISON.md)
 
 ```sh
-git submodule update --init --recursive
+git clone https://github.com/Qiskit/qiskit.git vendor/qiskit
+git -C vendor/qiskit checkout --detach 9ab2106352f603bf411e1387a758f6d9667c7c1c
 python3 -m venv .venv
 .venv/bin/python -m pip install -e ./vendor/qiskit
 ```
 
-Use a Python version supported by the pinned checkout (Python 3.11+ at this revision),
-a Rust toolchain meeting its manifest's minimum, and the platform's native compiler/linker.
-The editable installation builds Qiskit's native extension. A wheel from PyPI is not
-used as a substitute: the comparison script verifies that imports resolve inside
-`vendor/qiskit`. The parent repository's submodule gitlink pins the tested revision;
-do not use `git submodule update --remote` when reproducing results.
+Use Python 3.11 or newer, a Rust toolchain meeting the checkout's manifest
+minimum, and the platform's native compiler and linker. The editable installation
+builds Qiskit's native extension. The legacy comparison script verifies that
+imports resolve inside `vendor/qiskit`.
 
-## Parity tests
+## Historical source-based parity tests
 
 ```sh
 .venv/bin/python tools/compare_qiskit.py parity
@@ -438,6 +445,11 @@ Optional request fields: `precision` (default `"f64"`), `threads` (default one),
 include squared norm, optional amplitudes/probabilities, probes, and timing samples.
 Invalid requests emit an `error` result and cause a nonzero process exit; subsequent
 valid lines are still processed. Unknown JSON fields are rejected.
+
+With the optional `benchmark` object, the CLI resets one allocated state buffer
+to the all-zero basis state before each warmup and repetition. The internal
+samples measure gate execution, and the response reports the final repetition's
+state. The separate `./compare` runner measures fresh-state request latency.
 
 `include_norm: false` omits the full norm scan and returns `norm_sqr: null` for
 small-output request benchmarks. The default remains true. Optional

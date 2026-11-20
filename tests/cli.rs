@@ -29,7 +29,7 @@ fn run(requests: &str) -> (bool, Vec<Value>) {
 fn json_roundtrip_and_benchmark_summary() {
     let request = json!({"num_qubits": 2, "gates": [{"gate": "x", "target": 1}],
                          "include_state": false, "probe_indices": [0, 2],
-                         "benchmark": {"repetitions": 3, "warmup": 1}});
+                         "benchmark": {"repetitions": 3, "warmup": 2}});
     let (ok, rows) = run(&format!("{request}\n"));
     assert!(ok);
     assert_eq!(rows.len(), 1);

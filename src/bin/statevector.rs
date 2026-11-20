@@ -73,7 +73,6 @@ fn run<A: Amplitude>(r: Request) -> Result<Value, Box<dyn std::error::Error>> {
         None
     };
     let compilation_seconds = start.elapsed().as_secs_f64();
-    let fresh = || TypedStateVector::<A>::with_memory_limit(r.num_qubits, r.memory_limit_bytes);
     let execute = |s: &mut TypedStateVector<A>| -> Result<(), SimError> {
         if let Some(c) = &compiled {
             executor.run_compiled(s, c)
@@ -81,7 +80,7 @@ fn run<A: Amplitude>(r: Request) -> Result<Value, Box<dyn std::error::Error>> {
             executor.run(s, &r.gates)
         }
     };
-    let mut state = fresh()?;
+    let mut state = TypedStateVector::<A>::with_memory_limit(r.num_qubits, r.memory_limit_bytes)?;
     if r.probe_indices
         .iter()
         .any(|&i| i >= state.amplitudes().len())
@@ -95,7 +94,7 @@ fn run<A: Amplitude>(r: Request) -> Result<Value, Box<dyn std::error::Error>> {
         }
         execute(&mut state)?; // preflight validates before collecting any timings
         for i in 0..b.warmup + b.repetitions {
-            state = fresh()?;
+            state.reset();
             let start = Instant::now();
             execute(&mut state)?;
             let t = start.elapsed().as_secs_f64();
@@ -103,8 +102,6 @@ fn run<A: Amplitude>(r: Request) -> Result<Value, Box<dyn std::error::Error>> {
                 seconds.push(t);
             }
         }
-        state = fresh()?;
-        execute(&mut state)?;
     } else {
         let start = Instant::now();
         execute(&mut state)?;

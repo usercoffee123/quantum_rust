@@ -1,0 +1,2745 @@
+{
+  "binaries": {
+    "4096": "300555d499930f6344fc6dde5ed996afc34c0f387b0e167c6c7cbdc0a9df46e1",
+    "2048": "ee3c5a3358b640720368e6fa31f43cb6a3b8967b86a2c002632cc83e4079d4fe",
+    "8192": "34a7d5fbdfab514ca28c4d16ba308b521ecffa32b615fb1d7a83e4f279ffae1c"
+  },
+  "warmups": 2,
+  "repetitions": 7,
+  "worker_count": 4,
+  "scope": "Rust FP64, paired traversal grain 2048/4096/8192, outer grains twice these values",
+  "cases": {
+    "cx_stride": {
+      "request": {
+        "num_qubits": 22,
+        "gates": [
+          {
+            "gate": "h",
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "h",
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "h",
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "h",
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "h",
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "h",
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "h",
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "h",
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "h",
+            "target": 8
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "h",
+            "target": 9
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "h",
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 11,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 12,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 13,
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 14,
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 15,
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 16,
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 17,
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 18,
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 19,
+            "target": 8
+          },
+          {
+            "gate": "cx",
+            "control": 20,
+            "target": 9
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 11,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 12,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 13,
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 14,
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 15,
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 16,
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 17,
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 18,
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 19,
+            "target": 8
+          },
+          {
+            "gate": "cx",
+            "control": 20,
+            "target": 9
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 11,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 12,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 13,
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 14,
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 15,
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 16,
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 17,
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 18,
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 19,
+            "target": 8
+          }
+        ],
+        "threads": 4,
+        "precision": "f64",
+        "fusion": true,
+        "optimize": false,
+        "memory_limit_bytes": 268435456,
+        "include_state": false,
+        "include_norm": false,
+        "probe_indices": [
+          0,
+          106548,
+          112695,
+          127038,
+          135234,
+          161671,
+          192665,
+          232131,
+          366771,
+          393408,
+          430290,
+          469221,
+          586014,
+          804861,
+          835992,
+          850782,
+          917952,
+          926148,
+          938442,
+          977373,
+          1028598,
+          1148039,
+          1155124,
+          1208476,
+          1243488,
+          1292409,
+          1372836,
+          1595158,
+          1761628,
+          1771873,
+          1778564,
+          1871705,
+          1936058,
+          1979472,
+          1998773,
+          2119691,
+          2136746,
+          2175270,
+          2259927,
+          2287709,
+          2311837,
+          2355326,
+          2413367,
+          2478266,
+          2525393,
+          2608778,
+          2683166,
+          2726195,
+          2793210,
+          2838890,
+          2943389,
+          3004859,
+          3024271,
+          3090917,
+          3107309,
+          3111407,
+          3166643,
+          3268076,
+          3341900,
+          3465691,
+          3744036,
+          3772812,
+          3930653,
+          4013426,
+          4057572,
+          4117472,
+          4174824
+        ]
+      },
+      "timings": {
+        "4096": {
+          "request_seconds": [
+            0.08688462500000005,
+            0.09637299999999982,
+            0.08706733300000002,
+            0.07384029199999986,
+            0.08225875000000005,
+            0.08227716699999998,
+            0.09067800000000004
+          ],
+          "gate_seconds": [
+            0.085936459,
+            0.094105208,
+            0.086110625,
+            0.072975541,
+            0.081337667,
+            0.081357167,
+            0.08961425
+          ]
+        },
+        "2048": {
+          "request_seconds": [
+            0.10105358399999997,
+            0.16620866700000003,
+            0.07630037499999998,
+            0.07218179199999986,
+            0.07681866699999995,
+            0.104156417,
+            0.09375283299999992
+          ],
+          "gate_seconds": [
+            0.100093083,
+            0.165112333,
+            0.075345375,
+            0.071376125,
+            0.07578575,
+            0.103242,
+            0.092715625
+          ]
+        },
+        "8192": {
+          "request_seconds": [
+            0.10117362500000004,
+            0.08585183299999999,
+            0.07872066599999994,
+            0.07619904200000005,
+            0.11497429200000009,
+            0.07584766700000012,
+            0.163500333
+          ],
+          "gate_seconds": [
+            0.100203834,
+            0.082376167,
+            0.077839541,
+            0.075305709,
+            0.114088542,
+            0.074917,
+            0.162585916
+          ]
+        }
+      }
+    },
+    "cx_stride_compressed": {
+      "request": {
+        "num_qubits": 22,
+        "gates": [
+          {
+            "gate": "h",
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "h",
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "h",
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "h",
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "h",
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "h",
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "h",
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "h",
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "h",
+            "target": 8
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "h",
+            "target": 9
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "h",
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 11,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 12,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 13,
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 14,
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 15,
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 16,
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 17,
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 18,
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 19,
+            "target": 8
+          },
+          {
+            "gate": "cx",
+            "control": 20,
+            "target": 9
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 11,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 12,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 13,
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 14,
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 15,
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 16,
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 17,
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 18,
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 19,
+            "target": 8
+          },
+          {
+            "gate": "cx",
+            "control": 20,
+            "target": 9
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 11
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 12
+          },
+          {
+            "gate": "cx",
+            "control": 2,
+            "target": 13
+          },
+          {
+            "gate": "cx",
+            "control": 3,
+            "target": 14
+          },
+          {
+            "gate": "cx",
+            "control": 4,
+            "target": 15
+          },
+          {
+            "gate": "cx",
+            "control": 5,
+            "target": 16
+          },
+          {
+            "gate": "cx",
+            "control": 6,
+            "target": 17
+          },
+          {
+            "gate": "cx",
+            "control": 7,
+            "target": 18
+          },
+          {
+            "gate": "cx",
+            "control": 8,
+            "target": 19
+          },
+          {
+            "gate": "cx",
+            "control": 9,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 11,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 12,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 13,
+            "target": 2
+          },
+          {
+            "gate": "cx",
+            "control": 14,
+            "target": 3
+          },
+          {
+            "gate": "cx",
+            "control": 15,
+            "target": 4
+          },
+          {
+            "gate": "cx",
+            "control": 16,
+            "target": 5
+          },
+          {
+            "gate": "cx",
+            "control": 17,
+            "target": 6
+          },
+          {
+            "gate": "cx",
+            "control": 18,
+            "target": 7
+          },
+          {
+            "gate": "cx",
+            "control": 19,
+            "target": 8
+          }
+        ],
+        "threads": 4,
+        "precision": "f64",
+        "fusion": true,
+        "optimize": true,
+        "memory_limit_bytes": 268435456,
+        "include_state": false,
+        "include_norm": false,
+        "probe_indices": [
+          0,
+          106548,
+          112695,
+          127038,
+          135234,
+          161671,
+          192665,
+          232131,
+          366771,
+          393408,
+          430290,
+          469221,
+          586014,
+          804861,
+          835992,
+          850782,
+          917952,
+          926148,
+          938442,
+          977373,
+          1028598,
+          1148039,
+          1155124,
+          1208476,
+          1243488,
+          1292409,
+          1372836,
+          1595158,
+          1761628,
+          1771873,
+          1778564,
+          1871705,
+          1936058,
+          1979472,
+          1998773,
+          2119691,
+          2136746,
+          2175270,
+          2259927,
+          2287709,
+          2311837,
+          2355326,
+          2413367,
+          2478266,
+          2525393,
+          2608778,
+          2683166,
+          2726195,
+          2793210,
+          2838890,
+          2943389,
+          3004859,
+          3024271,
+          3090917,
+          3107309,
+          3111407,
+          3166643,
+          3268076,
+          3341900,
+          3465691,
+          3744036,
+          3772812,
+          3930653,
+          4013426,
+          4057572,
+          4117472,
+          4174824
+        ]
+      },
+      "timings": {
+        "4096": {
+          "request_seconds": [
+            0.030010250000000127,
+            0.03052924999999984,
+            0.028703750000000028,
+            0.07042920800000019,
+            0.03995991700000001,
+            0.033412624999999974,
+            0.053641625000000026
+          ],
+          "gate_seconds": [
+            0.028978625,
+            0.029625167,
+            0.027743625,
+            0.069480583,
+            0.039007125,
+            0.032461542,
+            0.052696792
+          ]
+        },
+        "2048": {
+          "request_seconds": [
+            0.030604834000000025,
+            0.02888875000000013,
+            0.029006540999999775,
+            0.04080054099999986,
+            0.06024291700000006,
+            0.048521333000000055,
+            0.05043958299999973
+          ],
+          "gate_seconds": [
+            0.029636667,
+            0.028032167,
+            0.028063917,
+            0.039831459,
+            0.059248833,
+            0.04758575,
+            0.049487125
+          ]
+        },
+        "8192": {
+          "request_seconds": [
+            0.031414208000000166,
+            0.030627250000000217,
+            0.029940124999999984,
+            0.02900500000000017,
+            0.028985416999999902,
+            0.030828207999999968,
+            0.030427459000000212
+          ],
+          "gate_seconds": [
+            0.0303825,
+            0.029704541,
+            0.028980167,
+            0.028139584,
+            0.028011333,
+            0.029894959,
+            0.029489708
+          ]
+        }
+      }
+    },
+    "cx_0_to_20": {
+      "request": {
+        "num_qubits": 22,
+        "gates": [
+          {
+            "gate": "h",
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 20
+          }
+        ],
+        "threads": 4,
+        "precision": "f64",
+        "fusion": false,
+        "optimize": false,
+        "memory_limit_bytes": 268435456,
+        "include_state": false,
+        "include_norm": false,
+        "probe_indices": [
+          0,
+          1,
+          1048577,
+          4194303
+        ]
+      },
+      "timings": {
+        "4096": {
+          "request_seconds": [
+            0.10971387499999974,
+            0.10789979100000036,
+            0.14908295800000015,
+            0.08052545899999952,
+            0.11728445800000031,
+            0.13872837500000035,
+            0.08359637499999995
+          ],
+          "gate_seconds": [
+            0.108765041,
+            0.106854541,
+            0.148079333,
+            0.079737042,
+            0.116433292,
+            0.13781475,
+            0.082695792
+          ]
+        },
+        "2048": {
+          "request_seconds": [
+            0.14390320800000023,
+            0.13554045799999948,
+            0.10758750000000017,
+            0.08361587499999956,
+            0.08280720900000027,
+            0.11219070799999997,
+            0.09032116699999992
+          ],
+          "gate_seconds": [
+            0.142936667,
+            0.134558,
+            0.106712875,
+            0.082723291,
+            0.081862917,
+            0.111346042,
+            0.089458875
+          ]
+        },
+        "8192": {
+          "request_seconds": [
+            0.1235409590000005,
+            0.11320833399999941,
+            0.09811195799999961,
+            0.08526508299999946,
+            0.10698183299999986,
+            0.09178879200000001,
+            0.1301826659999996
+          ],
+          "gate_seconds": [
+            0.122544584,
+            0.112134166,
+            0.097195583,
+            0.084321875,
+            0.10606,
+            0.090928458,
+            0.129278375
+          ]
+        }
+      }
+    },
+    "cx_10_to_21": {
+      "request": {
+        "num_qubits": 22,
+        "gates": [
+          {
+            "gate": "h",
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 10,
+            "target": 21
+          }
+        ],
+        "threads": 4,
+        "precision": "f64",
+        "fusion": false,
+        "optimize": false,
+        "memory_limit_bytes": 268435456,
+        "include_state": false,
+        "include_norm": false,
+        "probe_indices": [
+          0,
+          1024,
+          2098176,
+          4194303
+        ]
+      },
+      "timings": {
+        "4096": {
+          "request_seconds": [
+            0.08199329099999986,
+            0.055774999999999686,
+            0.047379124999999966,
+            0.05047179199999974,
+            0.04735624999999999,
+            0.06996116599999969,
+            0.06081787499999969
+          ],
+          "gate_seconds": [
+            0.081108166,
+            0.054883625,
+            0.046558167,
+            0.049709291,
+            0.046507667,
+            0.069177667,
+            0.059918292
+          ]
+        },
+        "2048": {
+          "request_seconds": [
+            0.05069570800000012,
+            0.06143595799999968,
+            0.04765854200000064,
+            0.04970733300000063,
+            0.046063166999999794,
+            0.09711533400000061,
+            0.05240004200000037
+          ],
+          "gate_seconds": [
+            0.049861459,
+            0.060547833,
+            0.046909625,
+            0.048893875,
+            0.045324084,
+            0.096221167,
+            0.051529542
+          ]
+        },
+        "8192": {
+          "request_seconds": [
+            0.05193104200000054,
+            0.049779249999999386,
+            0.049128916999999994,
+            0.05050620899999991,
+            0.048062250000000084,
+            0.05190000000000072,
+            0.05336637499999952
+          ],
+          "gate_seconds": [
+            0.051159833,
+            0.048735042,
+            0.048314291,
+            0.049634041,
+            0.047229541,
+            0.05097925,
+            0.052497209
+          ]
+        }
+      }
+    },
+    "cx_21_to_0": {
+      "request": {
+        "num_qubits": 22,
+        "gates": [
+          {
+            "gate": "h",
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 0
+          }
+        ],
+        "threads": 4,
+        "precision": "f64",
+        "fusion": false,
+        "optimize": false,
+        "memory_limit_bytes": 268435456,
+        "include_state": false,
+        "include_norm": false,
+        "probe_indices": [
+          0,
+          2097152,
+          2097153,
+          4194303
+        ]
+      },
+      "timings": {
+        "4096": {
+          "request_seconds": [
+            0.06503387499999924,
+            0.08974612499999957,
+            0.040219041999998595,
+            0.03555170899999993,
+            0.03513466700000123,
+            0.04629870800000013,
+            0.03893170899999987
+          ],
+          "gate_seconds": [
+            0.064072417,
+            0.088806584,
+            0.039138708,
+            0.03479175,
+            0.034239166,
+            0.045432209,
+            0.03801
+          ]
+        },
+        "2048": {
+          "request_seconds": [
+            0.04694179200000015,
+            0.039892874999999606,
+            0.03445066699999977,
+            0.03482929200000129,
+            0.06827158400000144,
+            0.042425125000001174,
+            0.04841824999999922
+          ],
+          "gate_seconds": [
+            0.045993084,
+            0.038973625,
+            0.033662833,
+            0.034032916,
+            0.067378042,
+            0.04156075,
+            0.047563792
+          ]
+        },
+        "8192": {
+          "request_seconds": [
+            0.0484118750000011,
+            0.04141533299999978,
+            0.03853862499999927,
+            0.03550150000000052,
+            0.047729083000000116,
+            0.040981834000000106,
+            0.03629170899999856
+          ],
+          "gate_seconds": [
+            0.047463666,
+            0.040489292,
+            0.037650167,
+            0.034688833,
+            0.046917584,
+            0.040127583,
+            0.035424333
+          ]
+        }
+      }
+    },
+    "cx_21_to_10": {
+      "request": {
+        "num_qubits": 22,
+        "gates": [
+          {
+            "gate": "h",
+            "target": 21
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          },
+          {
+            "gate": "cx",
+            "control": 21,
+            "target": 10
+          }
+        ],
+        "threads": 4,
+        "precision": "f64",
+        "fusion": false,
+        "optimize": false,
+        "memory_limit_bytes": 268435456,
+        "include_state": false,
+        "include_norm": false,
+        "probe_indices": [
+          0,
+          2097152,
+          2098176,
+          4194303
+        ]
+      },
+      "timings": {
+        "4096": {
+          "request_seconds": [
+            0.046776707999999445,
+            0.03329599999999999,
+            0.11160825000000152,
+            0.04802287499999913,
+            0.05388400000000004,
+            0.03454687499999842,
+            0.03709016600000048
+          ],
+          "gate_seconds": [
+            0.0458845,
+            0.032412083,
+            0.110709875,
+            0.047089208,
+            0.052974084,
+            0.0336595,
+            0.036153125
+          ]
+        },
+        "2048": {
+          "request_seconds": [
+            0.04275441699999938,
+            0.03551512499999987,
+            0.0832261669999994,
+            0.0977414999999997,
+            0.037100875000000144,
+            0.034407458000000446,
+            0.03825916699999965
+          ],
+          "gate_seconds": [
+            0.041807375,
+            0.034640041,
+            0.082238625,
+            0.096843167,
+            0.036221125,
+            0.033538625,
+            0.037403208
+          ]
+        },
+        "8192": {
+          "request_seconds": [
+            0.044437958999999694,
+            0.03430991699999986,
+            0.03978454199999959,
+            0.044235207999999915,
+            0.06739958300000026,
+            0.039058374999999756,
+            0.05868004199999888
+          ],
+          "gate_seconds": [
+            0.043546958,
+            0.033423041,
+            0.038815667,
+            0.043328542,
+            0.066458625,
+            0.038193875,
+            0.057779
+          ]
+        }
+      }
+    }
+  }
+}

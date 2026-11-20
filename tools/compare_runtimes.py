@@ -70,6 +70,37 @@ def gate_list(case, config):
                           for i in range(config['depth'])]
 
 
+def validation_probes(case, config, gates):
+    """Select deterministic probes, including occupied indices for sparse CX states."""
+    n = case['num_qubits']
+    size = 1 << n
+    rng = random.Random(config['seed'])
+    if case['family'] != 'cx_stride':
+        return sorted({0, 1, size - 1, *rng.sample(range(size), min(64, size))})
+
+    half = n // 2
+    choices = 1 << (n - half)
+    low_mask = (1 << half) - 1
+    # The first n gates prepare Bell pairs (and one free bit for odd n).
+    # Each CX in the body is an invertible permutation of basis indices.
+    cx_bits = [(g['control'], g['target']) for g in gates[n:]]
+
+    def permuted(choice, mismatch):
+        low = choice & low_mask
+        high = (low ^ mismatch) | (choice & ~low_mask)
+        index = low | (high << half)
+        for control, target in cx_bits:
+            index ^= ((index >> control) & 1) << target
+        return index
+
+    occupied = [0, *rng.sample(range(1, choices), min(32, choices - 1))]
+    empty = rng.sample(range(size - choices), min(67 - len(occupied), size - choices))
+    probes = [permuted(choice, 0) for choice in occupied]
+    # A nonzero mismatch between paired bits places the index outside the support.
+    probes.extend(permuted(i % choices, i // choices + 1) for i in empty)
+    return sorted(probes)
+
+
 def admission(case, config):
     """Budget the largest state and conservative reference/scratch working set."""
     import benchmark_sizes as sizes
@@ -499,8 +530,7 @@ def main(argv=None):
             elif case['status'] != 'skipped':
                 gates = gate_list(case, config)
                 n = case['num_qubits']
-                rng = random.Random(config['seed'])
-                probes = sorted({0, 1, (1 << n)-1, *rng.sample(range(1 << n), min(64, 1 << n))})
+                probes = validation_probes(case, config, gates)
                 request = dict(num_qubits=n, gates=gates, threads=case['threads'], precision=case['precision'],
                                fusion=case['fusion'], optimize=case['optimize_cx'], memory_limit_bytes=args.max_state_mib * MIB,
                                include_state=False, include_norm=False, probe_indices=probes)

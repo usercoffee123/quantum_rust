@@ -187,6 +187,11 @@ impl<A: Amplitude> TypedStateVector<A> {
         data[0] = A::one();
         Ok(Self { n, data })
     }
+    /// Restore the register to the all-zero basis state in its existing buffer.
+    pub fn reset(&mut self) {
+        self.data.fill(A::zero());
+        self.data[0] = A::one();
+    }
     pub fn num_qubits(&self) -> usize {
         self.n
     }

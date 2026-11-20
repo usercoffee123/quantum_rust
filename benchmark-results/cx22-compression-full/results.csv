@@ -1,0 +1,2 @@
+num_qubits,family,precision,threads,fusion,optimize_cx,status,validation_scope,reason,rust_median_seconds,rust_min_seconds,rust_max_seconds,python_median_seconds,python_min_seconds,python_max_seconds,aer_median_seconds,aer_min_seconds,aer_max_seconds,python_over_rust,aer_over_rust,rust_gate_median_seconds,rust_compile_median_seconds
+22,cx_stride,f64,4,True,True,passed,full,,0.034758540999999976,0.029023916999999955,0.04717408299999992,,,,0.046534000000000075,0.04211779200000021,0.07707166700000001,,1.3387788630138449,0.033969792,1.225e-05

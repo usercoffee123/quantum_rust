@@ -58,7 +58,68 @@ budget, validation cap and per-case timeout. Existing nonempty output directorie
 are refused so previous results remain available. Without `--output`, every run
 gets a new timestamped directory.
 
-If the environment needs recreation:
+## Follow-up benchmark matrix
+
+Start with the original 20-qubit random-matching case to complete the
+three-engine comparison. Keep eight layers, seed 42, FP64, four requested Rust
+and Aer workers, fusion enabled, and CX compression disabled. Every backend
+gets one warmup and three measured requests. The 20-qubit case checks the full
+complex state.
+
+```sh
+./compare --qubits 20 --families random_matching --threads 4 --precisions f64 \
+  --engines python aer --layers 8 --seed 42 --fusion on --warmup 1 --repetitions 3
+```
+
+For a focused Rust/Aer comparison, run random-matching and CX-stride circuits
+at 20 and 22 qubits, with fusion on and off. The 20-qubit cases use full-state
+validation and the 22-qubit cases use probe validation at the default cap.
+The 22-qubit FP64 state is 64 MiB per engine.
+
+```sh
+./compare --qubits 20 22 --threads 4 --precisions f64 \
+  --families random_matching cx_stride --engines aer --fusion both \
+  --depth 64 --layers 8 --seed 42 --warmup 1 --repetitions 3
+```
+
+Report the median and sample range for every passing row. The random-matching
+case tests a dense state with rotations and entangling gates across the register.
+The CX-stride case starts from Bell pairs and then permutes their computational
+basis support with CX gates. At 22 qubits, the runner propagates paired and
+mismatched Bell indices through the CX sequence to select 33 expected nonzero
+and 34 expected zero locations deterministically. The backend comparison then
+checks the complex amplitudes at those locations.
+
+### 22-qubit CX compression
+
+Run the CX-stride case with Rust CX compression enabled and full-state
+validation. Both engines receive the same source circuit and run in FP64 with
+four workers and fusion enabled.
+
+```sh
+./compare --qubits 22 --threads 4 --families cx_stride --engines aer \
+  --fusion on --optimize-cx --full-check-max-qubits 22 \
+  --warmup 1 --repetitions 5
+```
+
+The compiler reduced 86 source gates to 26 execution operations. All
+4,194,304 amplitudes passed comparison with Aer, with a maximum complex
+amplitude error of 2.43e-17. The five measured fresh requests had a 34.76 ms
+Rust median (29.02–47.17 ms) and a 46.53 ms Aer median (42.12–77.07 ms).
+Aer metadata confirmed fusion was applied. The uncompressed matrix case
+recorded medians of 77.82 ms for Rust and 44.24 ms for Aer.
+
+A separate Rust-only sweep compared paired traversal grains of 2,048, 4,096
+and 8,192 amplitudes, with two warmups and seven measured samples per binary and
+workload. The 8,192 setting had the lowest median gate time on the CX-stride
+circuit, while the directed CX cases favored different settings and sample
+ranges overlapped. The default remains 4,096 amplitudes.
+
+## Python environment
+
+Create the wheel-based environment from a checkout using a Python interpreter
+that supports the pinned packages. The reported reconstruction used Python 3.9.6
+on ARM64 macOS.
 
 ```sh
 python3 -m venv .venv-rebuild
@@ -66,9 +127,9 @@ python3 -m venv .venv-rebuild
 ```
 
 Use `QISKIT_BENCH_PYTHON=/path/to/python ./compare` to select a different Python
-environment. The old pinned-submodule tools remain available for their historical
-experiments; this runner uses the installed Qiskit and Aer packages and records
-their actual versions.
+environment. The unified runner records the versions of its installed Qiskit and
+Aer packages. The historical source-based tools require a separate checkout at
+`vendor/qiskit`. [Historical setup instructions](README.md#set-up-the-historical-qiskit-source-checkout)
 
 ## What the times include
 

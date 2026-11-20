@@ -1,0 +1,282 @@
+{
+  "num_qubits": 20,
+  "family": "random_matching",
+  "threads": 4,
+  "precision": "f64",
+  "fusion": false,
+  "optimize_cx": false,
+  "id": "20q-random_matching-f64-4t-fusion-0",
+  "status": "passed",
+  "reason": null,
+  "memory_admission": {
+    "state_bytes": 16777216,
+    "estimated_working_bytes": 134217728,
+    "snapshot": {
+      "physical_bytes": 17179869184,
+      "available_bytes": 7554646016,
+      "method": "macOS free+inactive+speculative+purgeable pages (estimate)",
+      "Swapins": 0,
+      "Swapouts": 0
+    }
+  },
+  "request_sha256": "809ae5b6fbfa2c52322a16483cd5c78a2f6249c26b39ed4ac89fbfdb03ecc40b",
+  "gate_count": 420,
+  "circuit_sha256": "b416f606be000f5975f8d774a907a22d5dd56f7f80a021715c5dc43fea9b0e0a",
+  "request_path": "cases/20q-random_matching-f64-4t-fusion-0.request.json",
+  "validation_scope": "full",
+  "versions": {
+    "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+    "qiskit": "2.2.3",
+    "numpy": "2.0.2",
+    "aer": "0.17.2"
+  },
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "OMP_THREAD_LIMIT": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "validation": {
+    "rust": {
+      "passed": true,
+      "max_absolute_error": 7.385319077612974e-18,
+      "relative_l2_error": 1.916004010611466e-15,
+      "scaled_peak_error": 1.9394955610220092e-15,
+      "norm_drift": 1.1102230246251565e-15,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    "aer": {
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": 1.1102230246251565e-14,
+      "normalized_fidelity": 1.0
+    }
+  },
+  "unsupported": {},
+  "trial_order": [
+    {
+      "trial": 0,
+      "measured": false,
+      "engines": [
+        "aer",
+        "rust"
+      ]
+    },
+    {
+      "trial": 1,
+      "measured": true,
+      "engines": [
+        "rust",
+        "aer"
+      ]
+    },
+    {
+      "trial": 2,
+      "measured": true,
+      "engines": [
+        "aer",
+        "rust"
+      ]
+    },
+    {
+      "trial": 3,
+      "measured": true,
+      "engines": [
+        "rust",
+        "aer"
+      ]
+    }
+  ],
+  "raw_samples": {
+    "rust": [
+      0.09091770899999996,
+      0.09799437500000008,
+      0.08976945800000014
+    ],
+    "aer": [
+      0.21868387499999997,
+      0.13868512500000008,
+      0.13735379200000009
+    ]
+  },
+  "timings": {
+    "rust": {
+      "median_seconds": 0.09091770899999996,
+      "min_seconds": 0.08976945800000014,
+      "max_seconds": 0.09799437500000008,
+      "samples_seconds": [
+        0.09091770899999996,
+        0.09799437500000008,
+        0.08976945800000014
+      ]
+    },
+    "aer": {
+      "median_seconds": 0.13868512500000008,
+      "min_seconds": 0.13735379200000009,
+      "max_seconds": 0.21868387499999997,
+      "samples_seconds": [
+        0.21868387499999997,
+        0.13868512500000008,
+        0.13735379200000009
+      ]
+    }
+  },
+  "aer_metadata": {
+    "num_bind_params": 1,
+    "runtime_parameter_bind": false,
+    "parallel_state_update": 4,
+    "parallel_shots": 1,
+    "noise": "ideal",
+    "batched_shots_optimization": false,
+    "remapped_qubits": false,
+    "active_input_qubits": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "device": "CPU",
+    "time_taken": 0.133149333,
+    "measure_sampling": true,
+    "num_clbits": 0,
+    "max_memory_mb": 256,
+    "input_qubit_map": [],
+    "num_qubits": 20,
+    "method": "statevector",
+    "required_memory_mb": 16,
+    "result_subtypes": {
+      "amplitudes": "single"
+    },
+    "result_types": {
+      "amplitudes": "save_amplitudes"
+    },
+    "fusion": {
+      "enabled": false
+    }
+  },
+  "probe_checks": [
+    {
+      "trial": 0,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 0,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 3.7636029184026e-18,
+      "relative_l2_error": 1.8165078288809105e-15,
+      "scaled_peak_error": 1.711264392391413e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    {
+      "trial": 1,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 3.7636029184026e-18,
+      "relative_l2_error": 1.8165078288809105e-15,
+      "scaled_peak_error": 1.711264392391413e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    {
+      "trial": 1,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 2,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    },
+    {
+      "trial": 2,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 3.7636029184026e-18,
+      "relative_l2_error": 1.8165078288809105e-15,
+      "scaled_peak_error": 1.711264392391413e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    {
+      "trial": 3,
+      "engine": "rust",
+      "passed": true,
+      "max_absolute_error": 3.7636029184026e-18,
+      "relative_l2_error": 1.8165078288809105e-15,
+      "scaled_peak_error": 1.711264392391413e-15,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0000000000000002
+    },
+    {
+      "trial": 3,
+      "engine": "aer",
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "relative_l2_error": 0.0,
+      "scaled_peak_error": 0.0,
+      "norm_drift": null,
+      "normalized_fidelity": 1.0
+    }
+  ],
+  "compilation": null,
+  "rust_parallel_threshold": 65536,
+  "rust_gate": {
+    "median_seconds": 0.090583542,
+    "min_seconds": 0.089458541,
+    "max_seconds": 0.097546208,
+    "samples_seconds": [
+      0.090583542,
+      0.097546208,
+      0.089458541
+    ]
+  },
+  "rust_compile": {
+    "median_seconds": 0.0,
+    "min_seconds": 0.0,
+    "max_seconds": 0.0,
+    "samples_seconds": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "ratios": {
+    "aer_over_rust": 1.5253917693856556
+  }
+}

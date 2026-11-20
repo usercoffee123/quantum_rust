@@ -37,6 +37,31 @@ class RuntimeComparisonTests(unittest.TestCase):
             self.assertEqual({order[position] for order in orders}, set(names))
         self.assertEqual(c.engine_order(names, 0, 42), c.engine_order(names, 3, 42))
 
+    def test_sparse_cx_probes_cover_occupied_and_empty_amplitudes(self):
+        config = dict(seed=42, depth=64, target='high')
+        for n, occupied in [(6, 8), (7, 16), (21, 33), (22, 33)]:
+            with self.subTest(qubits=n):
+                case = dict(num_qubits=n, family='cx_stride')
+                gates = c.gate_list(case, config)
+                # Enumerate the support gate by gate from |0>, independently of
+                # the harness's direct Bell preparation and sampled mismatches.
+                support = {0}
+                for gate in gates:
+                    target_mask = 1 << gate['target']
+                    if gate['gate'] == 'h':
+                        support |= {index ^ target_mask for index in support}
+                    else:
+                        control_mask = 1 << gate['control']
+                        support = {index ^ target_mask if index & control_mask else index
+                                   for index in support}
+                probes = c.validation_probes(case, config, gates)
+                self.assertEqual(probes, c.validation_probes(case, config, gates))
+                self.assertEqual(probes, sorted(set(probes)))
+                self.assertEqual(len(probes), min(67, 1 << n))
+                self.assertTrue(all(0 <= index < 1 << n for index in probes))
+                self.assertIn(0, probes)
+                self.assertEqual(len(support.intersection(probes)), occupied)
+
     def test_checkpoint_retains_skips_and_failure_without_ratios(self):
         failed = self.row(status='accuracy_failed')
         skipped = dict(self.row(status='skipped'), timings={}, reason='memory limit')
