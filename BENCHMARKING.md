@@ -20,6 +20,25 @@ examples because affinity, temperature and unrelated desktop activity are uncont
 ## Common comparisons
 
 ```sh
+./compare --suite --qubits 20
+./compare --suite --qubits 20 22 --repetitions 3 --output benchmark-results/matched-suite
+./compare --suite --qubits 26 --dry-run
+```
+
+The suite runs Rust and Qiskit Aer at matching FP32 and FP64 precision with
+four workers by default. Its circuit families cover random entangling
+connectivity, scrambled Bell pairs, mixed gates, CX strides, and diagonal
+gates. Qiskit Aer is the native simulator called through Python. The pure
+Qiskit Statevector path is FP64 and can be requested separately with
+`--engines python`. The dry run checks memory admission and lists cases before
+allocation. Use `--families`, `--depth`, or `--layers` to narrow a large run or
+increase its circuit depth.
+
+Each case saves the exact Rust request under `cases/`. Use that request for
+the [macOS profiling workflow](README.md#automated-macos-profiling) once the
+timing run finishes.
+
+```sh
 # Fast check of the complete pipeline:
 ./compare --qubits 12 --threads 4 --repetitions 3
 

@@ -3,6 +3,7 @@
 
 Run --dry-run first. Captures are bounded windows, not full-circuit timings.
 Use --analyze-only DIR to re-analyze exports without running the simulator.
+Use --benchmark-run DIR to select a saved comparison case.
 """
 from __future__ import annotations
 
@@ -44,11 +45,14 @@ def open_xml(path):
 
 def demangle(names):
     names = sorted(set(names))
-    binary = shutil.which('rustfilt')
-    if not binary or not names:
+    rustfilt = shutil.which('rustfilt')
+    llvm = shutil.which('llvm-cxxfilt')
+    xcrun = shutil.which('xcrun') if sys.platform == 'darwin' else None
+    command = [rustfilt] if rustfilt else [llvm] if llvm else [xcrun, 'llvm-cxxfilt'] if xcrun else None
+    if not command or not names:
         return dict(zip(names, names))
     try:
-        result = subprocess.run([binary], input='\n'.join(names) + '\n', text=True,
+        result = subprocess.run(command, input='\n'.join(names) + '\n', text=True,
                                 capture_output=True, timeout=30, check=True)
         decoded = result.stdout.splitlines()
         if len(decoded) == len(names):
@@ -88,7 +92,7 @@ def summarize_time(path, process='statevector', skip_seconds=1.0):
             continue
         backtrace = resolve(tagged.find('backtrace'))
         if backtrace is None:
-            continue
+            backtrace = tagged
         frames = [resolve(f) for f in backtrace.findall('frame')]
         if not frames:
             continue
@@ -111,7 +115,8 @@ def summarize_time(path, process='statevector', skip_seconds=1.0):
             region = 'Fused execution (dense or separable subtree)'
         elif 'circuit::' in joined or 'fusion::compose' in joined or 'fusion::collect' in joined:
             region = 'Circuit compilation (inclusive subtree)'
-        elif 'apply_validated' in joined or 'execution::pairs' in joined or '::matrix' in joined:
+        elif any(name in joined for name in ('apply_validated', 'execution::pairs',
+                                             'execution::controlled_pairs', 'execution::apply', '::matrix')):
             region = 'Specialized gate kernels (inclusive subtree)'
         elif 'rayon' in joined:
             region = 'Rayon outside recognized kernel subtrees'
@@ -137,7 +142,8 @@ def summarize_time(path, process='statevector', skip_seconds=1.0):
                   'inclusive_cpu_seconds': inclusive[name] / 1e9,
                   'inclusive_percent': 100 * inclusive[name] / total}
                  for name in sorted(inclusive, key=lambda n: (exclusive[n], inclusive[n]), reverse=True)]
-    application = [f for f in functions if f['function'].startswith(('qiskit_rust::', '<qiskit_rust::'))]
+    application = [f for f in functions if 'qiskit_rust::' in f['function'] or
+                   f['function'].startswith('statevector::')]
     summary = {'process': process, 'skip_seconds': skip_seconds, 'samples': samples,
                'sampled_cpu_seconds': total / 1e9, 'excluded_startup_cpu_seconds': excluded / 1e9,
                'first_sample_seconds': first / 1e9, 'last_sample_seconds': last / 1e9,
@@ -370,6 +376,7 @@ def analyze(directory, output, process, skip_seconds, top, metadata):
     else:
         errors.append('CPU export not found')
     counters = {}
+    requested_modes = metadata.get('plan', {}).get('counter_modes')
     for mode in COUNTERS:
         path = find_export(directory, [mode])
         if path:
@@ -389,6 +396,20 @@ def analyze(directory, output, process, skip_seconds, top, metadata):
 
     def safe(value):
         return str(value).replace('|', '\\|').replace('\n', ' ')
+
+    if requested_modes is not None:
+        report += ['## Counter availability', '',
+                   '| Mode | Status |', '|---|---|']
+        for mode, (_, _, title) in COUNTERS.items():
+            status = 'Available' if mode in counters else (
+                'Unavailable for this capture' if mode in requested_modes else 'Unrequested')
+            report.append(f'| {title} | {status} |')
+        report += ['']
+    if metadata.get('system'):
+        report += ['## Host hardware', '', '| Property | Bytes |', '|---|---:|']
+        for name, value in metadata['system'].items():
+            report.append(f'| `{safe(name)}` | {safe(value) if value else "Unavailable"} |')
+        report += ['']
 
     if summary:
         report += ['## CPU functions', '',
@@ -439,18 +460,24 @@ def analyze(directory, output, process, skip_seconds, top, metadata):
         report += ['## Analysis errors', '', *[f'- {error}' for error in errors], '']
     (output / 'REPORT.md').write_text('\n'.join(report))
     write_json(output / 'analysis.json', {'cpu_available': summary is not None,
-                                         'counter_modes': list(counters), 'errors': errors})
+                                         'counter_modes': list(counters),
+                                         'unavailable_counter_modes': [
+                                             mode for mode in (requested_modes or []) if mode not in counters],
+                                         'errors': errors})
     return errors
 
 
 def parser():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('request', nargs='?', type=Path, help='One JSON request (pretty JSON accepted)')
+    p.add_argument('--benchmark-run', type=Path, metavar='DIR',
+                   help='Select an exact saved request from a comparison output directory')
+    p.add_argument('--case-id', help='Case ID from benchmark results, required if multiple requests exist')
     p.add_argument('--output', type=Path, help='New capture directory, or analysis destination')
     p.add_argument('--time-seconds', type=float, default=20)
     p.add_argument('--counter-seconds', type=float, default=2)
     p.add_argument('--skip-seconds', type=float, default=1, help='Exclude startup samples/events before this timestamp')
-    p.add_argument('--counters', nargs='*', choices=list(COUNTERS), default=['pipeline', 'l1d', 'dtlb'])
+    p.add_argument('--counters', nargs='*', choices=list(COUNTERS), default=list(COUNTERS))
     p.add_argument('--precision', choices=['f64', 'f32', 'f16'])
     p.add_argument('--threads', type=int)
     p.add_argument('--top', type=int, default=25)
@@ -464,6 +491,25 @@ def parser():
     return p
 
 
+def benchmark_request(directory, case_id):
+    directory = directory.resolve()
+    rows = json.loads((directory / 'results.json').read_text())['results']
+    cases = {row['id']: row for row in rows if row.get('request_path')}
+    if case_id is None and len(cases) == 1:
+        case_id = next(iter(cases))
+    if case_id not in cases:
+        choices = ', '.join(cases) or 'none'
+        raise ValueError(f'Choose a saved --case-id. Available cases: {choices}')
+    case = cases[case_id]
+    path = (directory / case['request_path']).resolve()
+    if directory not in path.parents:
+        raise ValueError('saved request path must be inside the benchmark run directory')
+    content = path.read_bytes()
+    if hashlib.sha256(content).hexdigest() != case['request_sha256']:
+        raise ValueError(f'saved benchmark request hash differs for {case_id}')
+    return path, content
+
+
 def main(argv=None):
     p = parser()
     args = p.parse_args(argv)
@@ -471,6 +517,10 @@ def main(argv=None):
         p.error('CPU window must be 1..120s and counter window 1..5s (counter traces grow quickly)')
     if args.skip_seconds < 0 or args.top < 1 or (args.threads is not None and args.threads < 1):
         p.error('skip-seconds must be nonnegative; top and threads must be positive')
+    if sum(bool(value) for value in (args.request, args.benchmark_run, args.analyze_only)) != 1:
+        p.error('choose one request, --benchmark-run DIR, or --analyze-only DIR')
+    if args.case_id and not args.benchmark_run:
+        p.error('--case-id requires --benchmark-run')
     if args.analyze_only:
         source = args.analyze_only.resolve()
         output = (args.output or source).resolve()
@@ -487,9 +537,12 @@ def main(argv=None):
         return bool(errors)
     if not args.skip_build and args.binary.resolve() != ROOT / 'target/profiling/release/statevector':
         p.error('--binary requires --skip-build; the managed build always uses target/profiling')
-    if args.request is None:
-        p.error('provide a JSON request or --analyze-only DIR')
-    request = json.loads(args.request.read_text())
+    if args.benchmark_run:
+        request_path, original_content = benchmark_request(args.benchmark_run, args.case_id)
+    else:
+        request_path = args.request.resolve()
+        original_content = request_path.read_bytes()
+    request = json.loads(original_content)
     if not isinstance(request, dict) or 'num_qubits' not in request or not isinstance(request.get('gates'), list):
         p.error('request must be an object containing num_qubits and a gates array')
     # Avoid giant output or writing to an export path embedded in the input.
@@ -507,9 +560,11 @@ def main(argv=None):
     stages = [('cpu', 'Time Profiler', args.time_seconds)]
     stages += [(mode, output / f'{mode}.tracetemplate', args.counter_seconds) for mode in dict.fromkeys(args.counters)]
     plan = {'output': str(output), 'binary': str(binary), 'qubits': request['num_qubits'],
+            'original_request': str(request_path), 'gate_count': len(request['gates']),
             'precision': request.get('precision', 'f64'), 'threads': request.get('threads', 1),
             'fusion': request.get('fusion', False), 'optimize': request.get('optimize', False),
             'build': not args.skip_build, 'skip_seconds': args.skip_seconds,
+            'counter_modes': list(dict.fromkeys(args.counters)),
             'captures': [record_command(template, seconds, output / f'{name}.trace', binary,
                                         output / 'request.json', output / f'{name}.stdout.jsonl')
                          for name, template, seconds in stages]}
@@ -531,8 +586,8 @@ def main(argv=None):
     output.mkdir(parents=True, exist_ok=True)
     effective = json.dumps(request) + '\n'
     (output / 'request.json').write_text(effective)
-    metadata = {'plan': plan, 'platform': sys.platform, 'original_request': str(args.request.resolve()),
-                'original_request_sha256': hashlib.sha256(args.request.read_bytes()).hexdigest(),
+    metadata = {'plan': plan, 'platform': sys.platform, 'original_request': str(request_path),
+                'original_request_sha256': hashlib.sha256(original_content).hexdigest(),
                 'effective_request_sha256': hashlib.sha256(effective.encode()).hexdigest(),
                 'build': 'release opt-level=3, debuginfo=2, frame pointers, no stripping; separate target/profiling',
                 'stages': {}, 'errors': []}
@@ -557,7 +612,9 @@ def main(argv=None):
     template_source = developer.parent / 'Applications/Instruments.app/Contents/Resources/templates/CPU Counters.tracetemplate'
     metadata['counter_template_source'] = str(template_source)
     metadata['system'] = {}
-    for key in ['hw.memsize', 'hw.cachelinesize', 'hw.perflevel0.l1dcachesize', 'hw.perflevel0.l2cachesize', 'hw.perflevel1.l2cachesize']:
+    for key in ['hw.memsize', 'hw.pagesize', 'hw.cachelinesize',
+                'hw.perflevel0.l1icachesize', 'hw.perflevel0.l1dcachesize', 'hw.perflevel0.l2cachesize',
+                'hw.perflevel1.l1icachesize', 'hw.perflevel1.l1dcachesize', 'hw.perflevel1.l2cachesize']:
         info = subprocess.run(['sysctl', '-n', key], capture_output=True, text=True)
         metadata['system'][key] = info.stdout.strip() if info.returncode == 0 else None
     for name, template, seconds in stages:

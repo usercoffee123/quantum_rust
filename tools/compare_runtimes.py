@@ -2,6 +2,7 @@
 """Compare Rust, Python Statevector and Aer with one fresh-state timing policy.
 
 Default: python tools/compare_runtimes.py
+FP32/FP64 Rust and Aer suite: ./compare --suite --qubits 26
 Plan without imports/build/allocation: python tools/compare_runtimes.py --dry-run
 Redisplay saved results: python tools/compare_runtimes.py --report PATH/results.json
 """
@@ -108,12 +109,17 @@ def admission(case, config):
     # Python and the correctness reference use FP64, even for low-precision Rust.
     payload = 16 * (1 << n)
     memory = sizes.memory_snapshot()
+    # Probe-only Aer cases run one backend at a time and retain only probes
+    # from the FP64 reference. Full-state and Python cases need extra copies.
+    probe_only_aer = config['engines'] == ['aer'] and n > config['full_check_max_qubits']
+    states = 4 if probe_only_aer else 8
+    working = states * payload
     reason = sizes.skip_reason(payload, config['max_state_mib'] * MIB, memory,
                                config['reserve_mib'] * MIB, .25)
     if not reason:
-        reason = sizes.skip_reason(8 * payload, 8 * config['max_state_mib'] * MIB,
+        reason = sizes.skip_reason(working, states * config['max_state_mib'] * MIB,
                                    memory, config['reserve_mib'] * MIB, .25)
-    return reason, dict(state_bytes=payload, estimated_working_bytes=8 * payload,
+    return reason, dict(state_bytes=payload, estimated_working_bytes=working,
                         snapshot=memory)
 
 
@@ -441,12 +447,14 @@ def run_worker(command, log, timeout):
 
 def parser():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument('--suite', action='store_true',
+                   help='Compare Rust and Qiskit Aer in FP32 and FP64 across five circuit families')
     p.add_argument('--qubits', type=int, nargs='+', default=[16, 20])
-    p.add_argument('--threads', type=int, nargs='+', default=[1, 4])
-    p.add_argument('--precisions', choices=list(LIMITS), nargs='+', default=['f64'])
+    p.add_argument('--threads', type=int, nargs='+')
+    p.add_argument('--precisions', choices=list(LIMITS), nargs='+')
     p.add_argument('--families', choices=['mixed', 'scrambled_bell', 'random_matching', 'cx_stride', 'diagonal'],
-                   nargs='+', default=['mixed', 'scrambled_bell'])
-    p.add_argument('--engines', choices=['python', 'aer'], nargs='+', default=['python', 'aer'])
+                   nargs='+')
+    p.add_argument('--engines', choices=['python', 'aer'], nargs='+')
     p.add_argument('--fusion', choices=['on', 'off', 'both'], default='on')
     p.add_argument('--optimize-cx', action='store_true')
     p.add_argument('--target', choices=['low', 'middle', 'high'], default='high')
@@ -456,7 +464,8 @@ def parser():
     p.add_argument('--repetitions', type=int, default=5)
     p.add_argument('--warmup', type=int, default=1)
     p.add_argument('--full-check-max-qubits', type=int, default=20)
-    p.add_argument('--max-state-mib', type=int, default=256)
+    p.add_argument('--max-state-mib', type=int,
+                   help='State size cap in MiB (default 256, or at least the requested FP64 state size with --suite)')
     p.add_argument('--reserve-mib', type=int, default=1024)
     p.add_argument('--timeout', type=float, default=600, help='Maximum seconds per isolated case')
     p.add_argument('--output', type=Path, help='New or empty results directory')
@@ -478,7 +487,18 @@ def main(argv=None):
         print(table(saved['results']))
         print('Primary times: fresh-state requests. Python always FP64/one numerical thread. Ratios >1 favor Rust.')
         return 0
-    if (any(not 6 <= n <= 30 for n in args.qubits) or any(t < 1 for t in args.threads) or
+    if any(not 6 <= n <= 30 for n in args.qubits):
+        p.error('qubits must be between 6 and 30')
+    default_families = ['mixed', 'scrambled_bell']
+    if args.suite:
+        default_families += ['random_matching', 'cx_stride', 'diagonal']
+    args.families = args.families or default_families
+    args.threads = args.threads or ([4] if args.suite else [1, 4])
+    args.precisions = args.precisions or (['f32', 'f64'] if args.suite else ['f64'])
+    args.engines = args.engines or (['aer'] if args.suite else ['python', 'aer'])
+    if args.max_state_mib is None:
+        args.max_state_mib = max(256, (16 << max(args.qubits)) // MIB) if args.suite else 256
+    if (any(t < 1 for t in args.threads) or
             not 1 <= args.repetitions <= 100 or not 0 <= args.warmup <= 100 or
             args.layers < 1 or args.depth < 1 or args.max_state_mib < 1 or args.reserve_mib < 0 or
             not 0 <= args.full_check_max_qubits <= 30 or args.timeout <= 0):

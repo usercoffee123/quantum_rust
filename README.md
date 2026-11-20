@@ -469,16 +469,24 @@ The [scaled fusion-insensitive workload](LONG_FUSION_INSENSITIVE_COMPARISON.md) 
 
 ## Automated macOS profiling
 
-Use the Instruments wrapper to profile any saved CLI request:
+Use the Instruments wrapper to profile a saved comparison case or CLI request.
+Start with a dry run to confirm the case and capture settings.
 
 ```sh
-# Inspect the plan first; no build, files, or simulator runs:
-python3 tools/profile_rust_macos.py benchmark-results/2026-11-12-27q-712-layer-fused/request.json --dry-run
-# After the timing benchmark has finished:
-python3 tools/profile_rust_macos.py benchmark-results/2026-11-12-27q-712-layer-fused/request.json --precision f64 --threads 4 --output benchmark-results/profile-27q-f64
-# Repeat FP32 separately, optionally including disassembly and instruction TLB:
-python3 tools/profile_rust_macos.py benchmark-results/2026-11-12-27q-712-layer-fused/request.json --precision f32 --threads 4 --counters pipeline l1d dtlb itlb --disassembly --output benchmark-results/profile-27q-f32
+./compare --suite --qubits 20 --layers 256 --families random_matching \
+  --output benchmark-results/profile-input
+
+python3 tools/profile_rust_macos.py --benchmark-run benchmark-results/profile-input \
+  --case-id 20q-random_matching-f64-4t-fusion-1 --dry-run
+
+python3 tools/profile_rust_macos.py --benchmark-run benchmark-results/profile-input \
+  --case-id 20q-random_matching-f64-4t-fusion-1 \
+  --output benchmark-results/profile-20q-f64
 ```
+
+Use the matching FP32 case ID to compare profiles across precisions. A positional
+request JSON path also works. The profiler verifies the saved request hash when
+selecting a case from a comparison directory.
 
 Requires macOS and full Xcode with Instruments. `rustfilt`, when installed, makes
 Rust names readable; otherwise raw symbols remain available. The script builds
@@ -487,14 +495,15 @@ in `target/profiling`, leaving the regular benchmark binary untouched. It refuse
 to record while another `statevector` worker is active unless explicitly passed
 `--allow-concurrent`. Do not use that override for performance comparisons.
 
-Default captures are a 20-second Time Profiler window, and separate two-second
-CPU-bottleneck, L1D-cache and data-TLB windows. `--counters` selects modes;
-`--time-seconds`, `--counter-seconds` and `--skip-seconds` control windows and
+Default captures are a 20-second Time Profiler window and separate two-second
+CPU-bottleneck, L1 data-cache, data-TLB and instruction-TLB windows.
+`--counters` selects modes. `--time-seconds`, `--counter-seconds` and
+`--skip-seconds` control the capture windows and
 startup exclusion. The script checks the actual selected hardware counting mode
 in the exported trace before interpreting its events. Unsupported counters remain
-explicit capture errors; available CPU/cache results are still analyzed. Captures
-intentionally terminate the launched circuit at the recording limit. They do not
-wait for the full 712-layer circuit or claim its completed runtime.
+explicit in the counter availability table. Captures stop at the recording limit
+or when the request finishes. Use a deep enough circuit to leave useful samples
+after the startup cutoff.
 
 Each output directory contains `REPORT.md`, exclusive/inclusive function rankings,
 source-line hotspots, thread/P-core/E-core distributions, a hoverable
@@ -507,14 +516,14 @@ headroom is checked, and existing capture directories are not overwritten.
 For offline analysis of existing exports, without building or executing Rust:
 
 ```sh
-python3 tools/profile_rust_macos.py --analyze-only benchmark-results/profile-27q-f64
+python3 tools/profile_rust_macos.py --analyze-only benchmark-results/profile-20q-f64
 python3 -m unittest discover -s tools/tests -p 'test_profile_rust_macos.py' -v
 ```
 
 The effective profiling request preserves precision, threads, gates, fusion and
 CX-compression settings, but suppresses full-state/norm output, removes binary
-export paths and disables repeated benchmark requests. Original input is preserved
-and both request hashes are recorded. CPU samples describe running CPU time,
+export paths and disables repeated benchmark requests. The output directory
+contains the effective request and records hashes for both versions. CPU samples describe running CPU time,
 not wall-time waits; speculative L1 miss/uop ratios are not DRAM miss rates or
 stall-time percentages. Use uninstrumented timing runs to validate optimizations.
 

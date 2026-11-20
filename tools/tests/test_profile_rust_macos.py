@@ -1,5 +1,6 @@
 """Portable analysis/planning tests; never launches Instruments or a simulator."""
 import contextlib
+import hashlib
 import importlib.util
 import io
 import json
@@ -69,6 +70,14 @@ class ProfileTests(unittest.TestCase):
         self.assertAlmostEqual(result['event_ratios']['l1d_load_misses_per_load_uop'], .1)
         self.assertEqual(result['unparsed_rows'], 0)
 
+    def test_time_profile_supports_frames_directly_under_tagged_backtrace(self):
+        source = self.base / 'cpu.xml'
+        source.write_text(CPU.replace('<backtrace>', '').replace('</backtrace>', ''))
+        with mock.patch.object(p.shutil, 'which', return_value=None):
+            summary, _ = p.summarize_time(source)
+        self.assertEqual(summary['samples'], 2)
+        self.assertEqual(summary['functions'][0]['function'], 'qiskit_rust::hot')
+
     def test_counter_shared_ids(self):
         source = self.base / 'l1d.xml'
         xml = counter_xml().replace('<process fmt="statevector (7)"/>', '<process id="proc" fmt="statevector (7)"/>', 1)
@@ -116,7 +125,41 @@ class ProfileTests(unittest.TestCase):
         plan = json.loads(printed.getvalue())
         self.assertEqual(plan['precision'], 'f32')
         self.assertFalse(output.exists())
-        self.assertEqual(len(plan['captures']), 4)
+        self.assertEqual(len(plan['captures']), 5)
+        self.assertEqual(plan['counter_modes'], ['pipeline', 'l1d', 'dtlb', 'itlb'])
+
+    def test_saved_benchmark_request_is_selected_and_hash_checked(self):
+        request = self.base / 'saved.request.json'
+        content = b'{"num_qubits":22,"precision":"f32","threads":4,"gates":[]}'
+        request.write_bytes(content)
+        (self.base / 'results.json').write_text(json.dumps({'results': [
+            {'id': 'saved', 'request_path': request.name,
+             'request_sha256': hashlib.sha256(content).hexdigest()},
+            {'id': 'skipped', 'status': 'skipped'},
+        ]}))
+        with contextlib.redirect_stdout(io.StringIO()) as printed:
+            self.assertEqual(p.main(['--benchmark-run', str(self.base), '--dry-run']), 0)
+        plan = json.loads(printed.getvalue())
+        self.assertEqual(plan['original_request'], str(request.resolve()))
+        self.assertEqual(plan['precision'], 'f32')
+        self.assertEqual(plan['threads'], 4)
+        request.write_bytes(b'{}')
+        with self.assertRaisesRegex(ValueError, 'hash differs'):
+            p.benchmark_request(self.base, 'saved')
+
+    def test_report_lists_available_and_unavailable_counter_modes(self):
+        output = self.base / 'report'
+        output.mkdir()
+        (self.base / 'l1d.xml').write_text(counter_xml())
+        p.analyze(self.base, output, 'statevector', 1, 5,
+                  {'plan': {'counter_modes': ['l1d', 'itlb']}, 'system': {'hw.pagesize': '16384'}})
+        report = (output / 'REPORT.md').read_text()
+        self.assertIn('| L1D Cache Metrics | Available |', report)
+        self.assertIn('| Instruction Address Translation Metrics | Unavailable for this capture |', report)
+        self.assertIn('| Data Address Translation Metrics | Unrequested |', report)
+        self.assertIn('| `hw.pagesize` | 16384 |', report)
+        analysis = json.loads((output / 'analysis.json').read_text())
+        self.assertEqual(analysis['unavailable_counter_modes'], ['itlb'])
 
     def test_active_worker_guard_prevents_build_and_record(self):
         request, output = self.base / 'in.json', self.base / 'capture'

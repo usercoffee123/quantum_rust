@@ -83,6 +83,40 @@ class RuntimeComparisonTests(unittest.TestCase):
                 self.assertEqual(c.main(['--dry-run', '--qubits', '8', '--output', str(output)]), 0)
             self.assertFalse(output.exists())
 
+    def test_suite_defaults_plan_both_precisions_for_five_families(self):
+        output = io.StringIO()
+        with mock.patch.object(c, 'admission', return_value=(None, {})) as admission, \
+             contextlib.redirect_stdout(output):
+            self.assertEqual(c.main(['--suite', '--dry-run', '--qubits', '26']), 0)
+        cases = [call.args[0] for call in admission.call_args_list]
+        self.assertEqual(len(cases), 10)
+        self.assertEqual({(case['family'], case['precision']) for case in cases},
+                         {(family, precision)
+                          for family in ('mixed', 'scrambled_bell', 'random_matching', 'cx_stride', 'diagonal')
+                          for precision in ('f32', 'f64')})
+        self.assertTrue(all(case['num_qubits'] == 26 and case['threads'] == 4 for case in cases))
+        config = admission.call_args.args[1]
+        self.assertEqual(config['engines'], ['aer'])
+        self.assertEqual(config['max_state_mib'], 1024)
+
+    def test_aer_probe_admission_budgets_sequential_state_buffers(self):
+        import benchmark_sizes as sizes
+        config = dict(engines=['aer'], full_check_max_qubits=20, max_state_mib=1024,
+                      reserve_mib=1024)
+        memory = dict(physical_bytes=16 << 30, available_bytes=5 << 30)
+        with mock.patch.object(sizes, 'memory_snapshot', return_value=memory):
+            case = dict(num_qubits=26)
+            reason, estimate = c.admission(case, config)
+            self.assertIsNone(reason)
+            self.assertEqual(estimate['estimated_working_bytes'], 4 << 30)
+            for override in (dict(full_check_max_qubits=26), dict(engines=['python', 'aer'])):
+                reason, estimate = c.admission(case, dict(config, **override))
+                self.assertIsNotNone(reason)
+                self.assertEqual(estimate['estimated_working_bytes'], 8 << 30)
+            memory['available_bytes'] -= 1
+            reason, _ = c.admission(case, config)
+            self.assertIn('headroom', reason)
+
     def test_timeout_terminates_only_launched_worker_group(self):
         proc = mock.Mock(pid=123, returncode=None)
         proc.wait.side_effect = [subprocess.TimeoutExpired(['worker'], .1), -9]
