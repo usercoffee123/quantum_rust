@@ -47,14 +47,14 @@ impl Operation {
                     let phases = s.phases.map(A::coefficient);
                     quads(data, wires[0], wires[1], parallel, |a, b, c, d| {
                         let (x, y, z, w) = (a.load(), b.load(), c.load(), d.load());
-                        let u = A::real_scale(c0, x) + A::real_scale(ns0, y);
-                        let v = A::real_scale(s0, x) + A::real_scale(c0, y);
-                        let p = A::real_scale(c0, z) + A::real_scale(ns0, w);
-                        let q = A::real_scale(s0, z) + A::real_scale(c0, w);
-                        *a = A::store(phases[0] * (A::real_scale(c1, u) + A::real_scale(ns1, p)));
-                        *b = A::store(phases[1] * (A::real_scale(c1, v) + A::real_scale(ns1, q)));
-                        *c = A::store(phases[2] * (A::real_scale(s1, u) + A::real_scale(c1, p)));
-                        *d = A::store(phases[3] * (A::real_scale(s1, v) + A::real_scale(c1, q)));
+                        let u = A::real_mix(c0, x, ns0, y);
+                        let v = A::real_mix(s0, x, c0, y);
+                        let p = A::real_mix(c0, z, ns0, w);
+                        let q = A::real_mix(s0, z, c0, w);
+                        *a = A::store(phases[0] * A::real_mix(c1, u, ns1, p));
+                        *b = A::store(phases[1] * A::real_mix(c1, v, ns1, q));
+                        *c = A::store(phases[2] * A::real_mix(s1, u, c1, p));
+                        *d = A::store(phases[3] * A::real_mix(s1, v, c1, q));
                     });
                 } else {
                     let m = matrix.map(|r| r.map(A::coefficient));

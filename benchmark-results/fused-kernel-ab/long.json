@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "case": "26q-long-f64.request.json",
+      "sample_seconds": {
+        "baseline": [
+          102.40341520900002
+        ],
+        "candidate": [
+          77.137476667
+        ]
+      },
+      "checks": [
+        {
+          "passed": true,
+          "max_absolute_error": 2.1155864955592995e-18,
+          "relative_l2_error": 8.783667907155138e-15,
+          "scaled_peak_error": 1.1007271903817875e-14,
+          "norm_drift": null,
+          "normalized_fidelity": 0.9999999999999992
+        }
+      ],
+      "baseline_over_candidate": 1.3275442707449747
+    }
+  ],
+  "binaries": {
+    "baseline": "300555d499930f6344fc6dde5ed996afc34c0f387b0e167c6c7cbdc0a9df46e1",
+    "candidate": "e6b622cbbbe4daf229155b0591b83b7db11eb05803bd7e5735923f290ea71967"
+  }
+}

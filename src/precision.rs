@@ -33,6 +33,16 @@ pub trait Amplitude: Copy + Send + Sync + std::fmt::Debug + 'static {
     fn real_scale(coefficient: Self::Compute, value: Self::Compute) -> Self::Compute {
         coefficient * value
     }
+    /// Combine two amplitudes using coefficients with zero imaginary parts.
+    #[inline]
+    fn real_mix(
+        left: Self::Compute,
+        x: Self::Compute,
+        right: Self::Compute,
+        y: Self::Compute,
+    ) -> Self::Compute {
+        Self::real_scale(left, x) + Self::real_scale(right, y)
+    }
     fn as_complex64(self) -> Complex64;
     fn negated(self) -> Self;
     fn times_i(self) -> Self;
@@ -63,6 +73,14 @@ macro_rules! native {
             #[inline]
             fn real_scale(coefficient: Self, value: Self) -> Self {
                 Self::new(coefficient.re * value.re, coefficient.re * value.im)
+            }
+            #[cfg(any(target_arch = "aarch64", target_feature = "fma"))]
+            #[inline]
+            fn real_mix(left: Self, x: Self, right: Self, y: Self) -> Self {
+                Self::new(
+                    left.re.mul_add(x.re, right.re * y.re),
+                    left.re.mul_add(x.im, right.re * y.im),
+                )
             }
             fn coefficient_finite(v: Complex64) -> bool {
                 (v.re as $real).is_finite() && (v.im as $real).is_finite()
@@ -108,6 +126,10 @@ impl Amplitude for Complex16 {
     #[inline]
     fn real_scale(coefficient: Complex32, value: Complex32) -> Complex32 {
         <Complex32 as Amplitude>::real_scale(coefficient, value)
+    }
+    #[inline]
+    fn real_mix(left: Complex32, x: Complex32, right: Complex32, y: Complex32) -> Complex32 {
+        <Complex32 as Amplitude>::real_mix(left, x, right, y)
     }
     #[inline]
     fn as_complex64(self) -> Complex64 {
