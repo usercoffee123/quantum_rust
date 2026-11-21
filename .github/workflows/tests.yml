@@ -1,0 +1,37 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Rust and Python tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: tools/requirements-*.txt
+
+      - name: Install Python test dependencies
+        run: python -m pip install -r tools/requirements-retry-aer.txt
+
+      - name: Run Rust tests
+        run: cargo test --locked --all-targets
+
+      - name: Build the simulator for Python integration tests
+        run: cargo build --locked --release
+
+      - name: Run Python tests
+        run: python -B -m unittest discover -s tools/tests -v
