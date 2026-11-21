@@ -1,3 +1,3 @@
-[submodule "vendor/qiskit"]
+[submodule "qiskit"]
 	path = vendor/qiskit
-	url = https://github.com/Qiskit/qiskit.git
+	url = git@github.com:Qiskit/qiskit.git
