@@ -217,8 +217,8 @@ def write_outputs(directory, report):
 
 class RustSession:
     """One native process; each line creates a new state and execution context."""
-    def __init__(self, binary):
-        self.proc = subprocess.Popen([str(binary)], stdin=subprocess.PIPE,
+    def __init__(self, binary, *args):
+        self.proc = subprocess.Popen([str(binary), *map(str, args)], stdin=subprocess.PIPE,
                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                      text=True, bufsize=1)
 

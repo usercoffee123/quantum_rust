@@ -134,6 +134,25 @@ workload. The 8,192 setting had the lowest median gate time on the CX-stride
 circuit, while the directed CX cases favored different settings and sample
 ranges overlapped. The default remains 4,096 amplitudes.
 
+## Metal FP32 prototype
+
+On a Mac with Metal and Xcode, compare the FP32 Rust CPU engine with the Metal
+prototype on a random-matching circuit. [Metal results and remaining work](METAL_FP32_REPORT.md)
+
+```sh
+.venv-rebuild/bin/python tools/benchmark_metal.py --qubits 27 --layers 8 \
+  --output benchmark-results/metal-fp32-27q
+```
+
+The prototype implements H, CX, Ry and Rz and combines adjacent rotations into
+one- or two-qubit kernels. It keeps one state buffer on the GPU between
+dispatches and reads only the requested amplitudes after execution. Request
+timings include allocation, initialization, gate processing and probe output.
+The CPU and GPU binaries build before timing, and Metal pipeline compilation
+happens before warmups. The runner checks every amplitude through 14 qubits
+and 67 deterministic probes at larger sizes against the Rust FP32 result.
+Use a terminal with GPU access if the current execution sandbox denies Metal.
+
 ## Python environment
 
 Create the wheel-based environment from a checkout using a Python interpreter
