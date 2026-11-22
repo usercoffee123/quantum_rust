@@ -262,3 +262,22 @@ Run the whole Python tooling suite in the installed environment with:
 ```sh
 .venv-rebuild/bin/python -B -m unittest discover -s tools/tests -v
 ```
+
+## General CPU optimization suite
+
+Build the before and after `statevector` binaries in release mode and pass their
+paths in baseline-first order. The harness launches a fresh process for every
+sample and reverses binary order on alternate rounds.
+
+```sh
+python3 tools/benchmark_general_cpu.py /path/to/baseline /path/to/candidate \
+  --qubits 16 23 --gates 64 --rounds 3 > benchmark-results/general-cpu.jsonl
+```
+
+The default suite crosses four seeded circuit families, two wire layouts, two
+state sizes and FP32/FP64. The local layout mixes runs on low wires with
+register-wide operations. Use `--families entangling --layouts low-control`
+to isolate controlled gates on bit zero. Each row includes gate times, peak
+process RSS, compiler statistics and a full-state pass-equivalent estimate.
+The byte estimate counts a read and write for each planned operation. Actual
+traffic depends on gate sparsity and cache residency.

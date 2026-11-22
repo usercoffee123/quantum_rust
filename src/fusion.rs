@@ -1,9 +1,15 @@
 use crate::{Amplitude, CompilationStats, Complex64 as C, Gate, execution};
 use rayon::prelude::*;
 
+// A contiguous 64 KiB tile with FP64 leaves room for other L1 data.
+const TILE_AMPLITUDES: usize = 4096;
+const MIN_TILED_AMPLITUDES: usize = 1 << 17;
+const MIN_ROTATION_RUN: usize = 8;
+
 type Matrix = [[C; 4]; 4];
 pub(crate) enum Operation {
     Gate(Gate),
+    Tiled(Vec<Operation>),
     Fused {
         wires: Vec<usize>,
         matrix: Box<Matrix>,
@@ -17,9 +23,34 @@ pub(crate) struct Structured {
     phases: [C; 4],
 }
 impl Operation {
+    fn tile_local(&self) -> bool {
+        let fits = |wire| 1usize << wire < TILE_AMPLITUDES;
+        match self {
+            Self::Gate(gate) => gate.wires().into_iter().all(fits),
+            Self::Fused { wires, .. } => wires.iter().copied().all(fits),
+            Self::Tiled(_) => false,
+        }
+    }
+
     pub(crate) fn apply<A: Amplitude>(&self, data: &mut [A], parallel: bool) {
         match self {
             Self::Gate(g) => execution::apply(data, g, parallel),
+            Self::Tiled(ops) => {
+                let apply_tile = |tile: &mut [A]| {
+                    for op in ops {
+                        op.apply(tile, false);
+                    }
+                };
+                if data.len() < MIN_TILED_AMPLITUDES {
+                    for op in ops {
+                        op.apply(data, parallel);
+                    }
+                } else if parallel {
+                    data.par_chunks_mut(TILE_AMPLITUDES).for_each(apply_tile);
+                } else {
+                    data.chunks_mut(TILE_AMPLITUDES).for_each(apply_tile);
+                }
+            }
             Self::Fused {
                 wires,
                 matrix,
@@ -125,13 +156,164 @@ fn quads<A: Amplitude, F: Fn(&mut A, &mut A, &mut A, &mut A) + Sync + Send>(
         data.chunks_mut(2 * hi).for_each(block);
     }
 }
-pub(crate) fn collect(gates: &[Gate], stats: &mut CompilationStats) -> Vec<Operation> {
+fn is_rotation(gate: &Gate) -> bool {
+    matches!(
+        gate,
+        Gate::H { .. } | Gate::Rx { .. } | Gate::Ry { .. } | Gate::Rz { .. }
+    )
+}
+
+fn collect_rotation_run(
+    gates: &[Gate],
+    n: usize,
+    ops: &mut Vec<Operation>,
+    stats: &mut CompilationStats,
+) {
+    let mut by_wire = vec![Vec::new(); n];
+    for gate in gates {
+        by_wire[gate.target()].push(gate.clone());
+    }
+    flush_rotations(by_wire, ops, stats);
+}
+
+fn flush_rotations(
+    by_wire: Vec<Vec<Gate>>,
+    ops: &mut Vec<Operation>,
+    stats: &mut CompilationStats,
+) {
+    let active: Vec<_> = by_wire
+        .into_iter()
+        .enumerate()
+        .filter(|(_, gates)| !gates.is_empty())
+        .collect();
+    for group in active.chunks(2) {
+        let wires: Vec<_> = group.iter().map(|(wire, _)| *wire).collect();
+        // Different wires commute. Keep the original order within each wire.
+        let source: Vec<_> = group
+            .iter()
+            .flat_map(|(_, gates)| gates.iter().cloned())
+            .collect();
+        if source.len() == 1 || source.iter().all(|gate| matches!(gate, Gate::Rz { .. })) {
+            ops.extend(source.into_iter().map(Operation::Gate));
+            continue;
+        }
+        push_fused(source, wires, ops, stats);
+    }
+}
+
+fn push_fused(
+    source: Vec<Gate>,
+    wires: Vec<usize>,
+    ops: &mut Vec<Operation>,
+    stats: &mut CompilationStats,
+) {
+    let matrix = compose(&source, &wires);
+    if matrix.iter().flatten().all(|&z| crate::circuit::finite(z)) {
+        let structured = recognize(&source, &wires);
+        stats.fused_blocks += 1;
+        stats.fused_source_gates += source.len();
+        stats.structured_fused_blocks += usize::from(structured.is_some());
+        ops.push(Operation::Fused {
+            wires,
+            matrix: Box::new(matrix),
+            source,
+            structured,
+        });
+    } else {
+        ops.extend(source.into_iter().map(Operation::Gate));
+    }
+}
+
+fn is_controlled(gate: &Gate) -> bool {
+    matches!(gate, Gate::Cx { .. } | Gate::Cz { .. })
+}
+
+fn collect_across_controls(
+    gates: &[Gate],
+    n: usize,
+    ops: &mut Vec<Operation>,
+    stats: &mut CompilationStats,
+) {
+    let mut pending = vec![Vec::new(); n];
+    for gate in gates {
+        let (control, target) = match *gate {
+            Gate::Cx { control, target } | Gate::Cz { control, target } => (control, target),
+            _ => {
+                pending[gate.target()].push(gate.clone());
+                continue;
+            }
+        };
+        // Flush both dependencies before the controlled gate. Pending rotations
+        // on every other wire commute with it and can stay queued.
+        let wires = vec![control.min(target), control.max(target)];
+        let mut source = std::mem::take(&mut pending[wires[0]]);
+        source.append(&mut pending[wires[1]]);
+        source.push(gate.clone());
+        if source.len() >= 4 && source[..source.len() - 1].iter().any(is_mixing) {
+            push_fused(source, wires, ops, stats);
+        } else {
+            ops.extend(source.into_iter().map(Operation::Gate));
+        }
+    }
+    flush_rotations(pending, ops, stats);
+}
+
+fn is_mixing(gate: &Gate) -> bool {
+    matches!(
+        gate,
+        Gate::H { .. } | Gate::Rx { .. } | Gate::Ry { .. } | Gate::U { .. }
+    )
+}
+
+pub(crate) fn collect(gates: &[Gate], n: usize, stats: &mut CompilationStats) -> Vec<Operation> {
     let mut ops = Vec::new();
+    let mut rotation_runs = Vec::new();
+    if n >= MIN_TILED_AMPLITUDES.ilog2() as usize {
+        let mut offset = 0;
+        for run in gates.chunk_by(|left, right| is_rotation(left) == is_rotation(right)) {
+            if run.len() >= MIN_ROTATION_RUN && is_rotation(&run[0]) {
+                let wires = run
+                    .iter()
+                    .fold(0usize, |mask, gate| mask | (1 << gate.target()));
+                // Dense two-wire kernels need enough gate reuse to pay for their
+                // arithmetic. A layer of independent H gates has no such reuse.
+                if run.len() >= 2 * wires.count_ones() as usize
+                    && run.iter().any(|gate| !matches!(gate, Gate::Rz { .. }))
+                {
+                    rotation_runs.push(offset..offset + run.len());
+                }
+            }
+            offset += run.len();
+        }
+    }
+    let mut rotation_runs = rotation_runs.into_iter().peekable();
     let mut start = 0;
     while start < gates.len() {
+        if let Some(run) = rotation_runs.next_if(|run| run.start == start) {
+            let mut end = run.end;
+            while let Some(next) =
+                rotation_runs.next_if(|next| gates[end..next.start].iter().all(is_controlled))
+            {
+                end = next.end;
+            }
+            if end == run.end {
+                collect_rotation_run(&gates[run], n, &mut ops, stats);
+            } else {
+                end += gates[end..]
+                    .iter()
+                    .take_while(|gate| is_controlled(gate))
+                    .count();
+                collect_across_controls(&gates[start..end], n, &mut ops, stats);
+            }
+            start = end;
+            continue;
+        }
         let mut wires = gates[start].wires();
         let mut end = start + 1;
-        while end < gates.len() && end - start < 32 {
+        while end < gates.len()
+            && end - start < 32
+            && rotation_runs.peek().is_none_or(|run| run.start != end)
+        {
             let next = gates[end].wires();
             let mut union = wires.clone();
             for q in next {
@@ -147,34 +329,38 @@ pub(crate) fn collect(gates: &[Gate], stats: &mut CompilationStats) -> Vec<Opera
         }
         wires.sort_unstable();
         let source = &gates[start..end];
-        let mixing = source.iter().any(|g| {
-            matches!(
-                g,
-                Gate::H { .. } | Gate::Rx { .. } | Gate::Ry { .. } | Gate::U { .. }
-            )
-        });
-        if mixing && source.len() >= if wires.len() == 1 { 2 } else { 4 } {
-            let matrix = compose(source, &wires);
-            if matrix.iter().flatten().all(|&z| crate::circuit::finite(z)) {
-                let structured = recognize(source, &wires);
-                stats.fused_blocks += 1;
-                stats.fused_source_gates += source.len();
-                stats.structured_fused_blocks += usize::from(structured.is_some());
-                ops.push(Operation::Fused {
-                    wires,
-                    matrix: Box::new(matrix),
-                    source: source.to_vec(),
-                    structured,
-                });
-            } else {
-                ops.extend(source.iter().cloned().map(Operation::Gate));
-            }
+        if source.iter().any(is_mixing) && source.len() >= if wires.len() == 1 { 2 } else { 4 } {
+            push_fused(source.to_vec(), wires, &mut ops, stats);
         } else {
             ops.extend(source.iter().cloned().map(Operation::Gate));
         }
         start = end;
     }
-    ops
+    if n < MIN_TILED_AMPLITUDES.ilog2() as usize {
+        return ops;
+    }
+    // Three passes amortize per-tile dispatch. Bound the group so long runs
+    // still expose scheduling boundaries and preserve cheap gate kernels.
+    let mut planned = Vec::new();
+    let mut remaining = ops.into_iter().peekable();
+    while let Some(op) = remaining.next() {
+        if !op.tile_local() {
+            planned.push(op);
+            continue;
+        }
+        let mut group = vec![op];
+        while group.len() < 32 && remaining.peek().is_some_and(Operation::tile_local) {
+            group.extend(remaining.next());
+        }
+        if group.len() >= 3 {
+            stats.tiled_blocks += 1;
+            stats.tiled_operations += group.len();
+            planned.push(Operation::Tiled(group));
+        } else {
+            planned.extend(group);
+        }
+    }
+    planned
 }
 fn compose(gates: &[Gate], wires: &[usize]) -> Matrix {
     let z = C::new(0., 0.);

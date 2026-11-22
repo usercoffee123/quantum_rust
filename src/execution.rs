@@ -157,6 +157,12 @@ fn controlled_pairs<A: Amplitude, F: Fn(&mut A, &mut A) + Send + Sync>(
             let (lo, hi) = chunk.split_at_mut(target_stride);
             let grain = 8192usize.max(2 * control_stride);
             let active = |(lo, hi): (&mut [A], &mut [A])| {
+                if control == 0 {
+                    for (a, b) in lo[1..].iter_mut().zip(&mut hi[1..]).step_by(2) {
+                        f(a, b);
+                    }
+                    return;
+                }
                 for (lo, hi) in lo
                     .chunks_mut(2 * control_stride)
                     .zip(hi.chunks_mut(2 * control_stride))

@@ -14,6 +14,8 @@ pub struct CompilationStats {
     pub cx_runs: usize,
     pub compressed_cx_runs: usize,
     pub execution_operations: usize,
+    pub tiled_blocks: usize,
+    pub tiled_operations: usize,
     pub fused_blocks: usize,
     pub fused_source_gates: usize,
     pub structured_fused_blocks: usize,
@@ -79,7 +81,7 @@ impl CompiledCircuit {
         }
         stats.output_gates = output.len();
         let operations = if options.fusion {
-            collect(&output, &mut stats)
+            collect(&output, n, &mut stats)
         } else {
             output.iter().cloned().map(Operation::Gate).collect()
         };

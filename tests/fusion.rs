@@ -16,16 +16,22 @@ fn compile(n: usize, gates: &[Gate]) -> CompiledCircuit {
 }
 
 fn compare<A: Amplitude>(n: usize, gates: &[Gate], tolerance: f64) {
+    compare_from::<A>(n, &[], gates, tolerance);
+}
+
+fn compare_from<A: Amplitude>(n: usize, preparation: &[Gate], gates: &[Gate], tolerance: f64) {
     let circuit = compile(n, gates);
     assert!(circuit.stats().fused_blocks > 0);
     assert!(circuit.stats().execution_operations < gates.len());
     let mut reference = TypedStateVector::<A>::new(n).unwrap();
+    reference.apply_all(preparation).unwrap();
     reference.apply_all(gates).unwrap();
     for threads in [1, 4] {
         let executor = CpuExecutor::new(threads)
             .unwrap()
             .with_parallel_threshold(0);
         let mut state = TypedStateVector::<A>::new(n).unwrap();
+        state.apply_all(preparation).unwrap();
         executor.run_compiled(&mut state, &circuit).unwrap();
         let error = state
             .amplitudes()
@@ -395,4 +401,154 @@ fn structured_recognition_preserves_gate_order_and_dense_fallback() {
         assert_eq!(compile(2, &gates).stats().structured_fused_blocks, 0);
         compare::<Complex64>(2, &gates, 1e-12);
     }
+}
+
+#[test]
+fn tiled_execution_preserves_gate_order_and_tile_boundaries() {
+    let n = 17;
+    let gates = [
+        Gate::H { target: 16 },
+        Gate::H { target: 0 },
+        Gate::Cx {
+            control: 0,
+            target: 11,
+        },
+        Gate::S { target: 11 },
+        Gate::Cz {
+            control: 16,
+            target: 0,
+        },
+        Gate::X { target: 2 },
+        Gate::Cx {
+            control: 2,
+            target: 1,
+        },
+        Gate::S { target: 1 },
+    ];
+    let circuit = compile(n, &gates);
+    assert_eq!(circuit.stats().tiled_blocks, 2);
+    assert_eq!(circuit.stats().tiled_operations, 6);
+    let mut reference = TypedStateVector::<Complex64>::new(n).unwrap();
+    reference.apply_all(&gates).unwrap();
+    for threads in [1, 4] {
+        let mut actual = TypedStateVector::<Complex64>::new(n).unwrap();
+        CpuExecutor::new(threads)
+            .unwrap()
+            .run_compiled(&mut actual, &circuit)
+            .unwrap();
+        assert_eq!(actual.amplitudes(), reference.amplitudes());
+    }
+}
+
+#[test]
+fn dependency_fusion_defers_only_untouched_wires() {
+    let n = 17;
+    let mut gates = Vec::new();
+    for pass in 0..2 {
+        for i in 0..4 {
+            let theta = 0.21 * (i + pass + 1) as f64;
+            let (high, untouched) = if i % 2 == 0 {
+                (
+                    Gate::Rx { target: 16, theta },
+                    Gate::Ry { target: 9, theta },
+                )
+            } else {
+                (
+                    Gate::Ry { target: 16, theta },
+                    Gate::Rz { target: 9, theta },
+                )
+            };
+            gates.extend([
+                high,
+                Gate::Ry {
+                    target: 0,
+                    theta: -0.32 * (i + 1) as f64,
+                },
+                untouched,
+            ]);
+        }
+        gates.push(if pass == 0 {
+            Gate::Cx {
+                control: 16,
+                target: 0,
+            }
+        } else {
+            Gate::Cz {
+                control: 0,
+                target: 16,
+            }
+        });
+    }
+    let single_layer: Vec<_> = (0..n).map(|target| Gate::H { target }).collect();
+    assert_eq!(compile(n, &single_layer).stats().fused_blocks, 0);
+
+    let circuit = compile(n, &gates);
+    assert_eq!(circuit.stats().fused_blocks, 3);
+    assert_eq!(circuit.stats().fused_source_gates, gates.len());
+    assert_eq!(circuit.stats().execution_operations, 3);
+
+    // An unsupported gate on a deferred wire must end the region.
+    let mut with_barrier = gates.clone();
+    with_barrier.insert(13, Gate::S { target: 9 });
+    assert_eq!(compile(n, &with_barrier).stats().fused_blocks, 4);
+
+    let preparation: Vec<_> = (0..n)
+        .flat_map(|target| {
+            [
+                Gate::H { target },
+                Gate::Rz {
+                    target,
+                    theta: 0.31 * target as f64,
+                },
+            ]
+        })
+        .collect();
+    for sequence in [&gates, &with_barrier] {
+        compare_from::<Complex32>(n, &preparation, sequence, 1e-6);
+        compare_from::<Complex64>(n, &preparation, sequence, 1e-14);
+        compare_from::<Complex16>(n, &preparation, sequence, 2e-3);
+    }
+}
+
+#[test]
+fn dependency_fusion_preserves_order_of_overlapping_controls() {
+    let n = 17;
+    let wires = [1, 7, 12, 16];
+    let controls = [
+        Gate::Cx {
+            control: 1,
+            target: 16,
+        },
+        Gate::Cx {
+            control: 16,
+            target: 12,
+        },
+        Gate::Cz {
+            control: 7,
+            target: 16,
+        },
+        Gate::Cx {
+            control: 12,
+            target: 1,
+        },
+    ];
+    let mut gates = Vec::new();
+    for (round, control) in controls.into_iter().enumerate() {
+        for (index, target) in wires.into_iter().enumerate() {
+            let theta = 0.17 * (1 + round + index) as f64;
+            gates.push(Gate::Ry { target, theta });
+        }
+        for (index, target) in wires.into_iter().rev().enumerate() {
+            let theta = -0.11 * (1 + round + index) as f64;
+            gates.push(Gate::Rx { target, theta });
+        }
+        gates.push(control);
+    }
+    let stats = compile(n, &gates).stats().clone();
+    assert_eq!(stats.execution_operations, 5);
+    assert_eq!(stats.fused_source_gates, gates.len());
+
+    let preparation: Vec<_> = (0..n).map(|target| Gate::H { target }).collect();
+    compare_from::<Complex64>(n, &preparation, &gates, 1e-14);
+    compare_from::<Complex32>(n, &preparation, &gates, 1e-6);
 }
